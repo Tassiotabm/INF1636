@@ -80,20 +80,59 @@ public class ludointerface extends JFrame {
 			g4.fill(g4r);
 			g.setColor(Color.black);
 			g.drawRect(180,180,120,120);
-			//desenhar fucking triangles
+
+			/*
+			 * Path2D.Double triangle = new Path2D.Double(); triangle.moveTo(x1,
+			 * y1); triangle.pathTo(x2, y2); triangle.pathTo(x3, y3);
+			 * triangle.closePath(); g2d.fill(triangle);
+			 */
+
+			// pintar triângulo 1 Green
 			Graphics2D t1 = (Graphics2D) g;
 			t1.setPaint(Color.green);
-			
-			
-			/*Path2D.Double triangle = new Path2D.Double();
-triangle.moveTo(x1, y1);
-triangle.pathTo(x2, y2);
-triangle.pathTo(x3, y3);
-triangle.closePath();
-g2d.fill(triangle);*/
+			Path2D.Double triangle = new Path2D.Double();
+			triangle.moveTo(120, 120);
+			triangle.lineTo(120, 180);
+			triangle.lineTo(150, 150);
+			triangle.closePath();
+			t1.fill(triangle);
+			// pintar triângulo 2 Red
+			Graphics2D t2 = (Graphics2D) g;
+			t2.setPaint(Color.red);
+			Path2D.Double triangle2 = new Path2D.Double();
+			triangle2.moveTo(120, 120);
+			triangle2.lineTo(180, 120);
+			triangle2.lineTo(150, 150);
+			triangle2.closePath();
+			t2.fill(triangle2);
+			// g.drawPolygon(new int[] {120, 180, 150}, new int[] {120, 120,
+			// 150}, 3);
+			// pintar triângulo 3 Blue
+			Graphics2D t3 = (Graphics2D) g;
+			t3.setPaint(Color.blue);
+			Path2D.Double triangle3 = new Path2D.Double();
+			triangle3.moveTo(180, 120);
+			triangle3.lineTo(180, 180);
+			triangle3.lineTo(150, 150);
+			triangle3.closePath();
+			t3.fill(triangle3);
+			// g.drawPolygon(new int[] {180, 180, 150}, new int[] {120, 180,
+			// 150}, 3);
+			// pintar triângulo 4 Yellow
+			Graphics2D t4 = (Graphics2D) g;
+			t4.setPaint(Color.yellow);
+			Path2D.Double triangle4 = new Path2D.Double();
+			triangle4.moveTo(120, 180);
+			triangle4.lineTo(180, 180);
+			triangle4.lineTo(150, 150);
+			triangle4.closePath();
+			t4.fill(triangle4);
+			// g.drawPolygon(new int[] {120, 180, 150}, new int[] {180, 180,
+			// 150}, 3)
 		}
 	}
-	private void initUI(){
+
+	private void initUI() {
 		Graphics g1;
 		Squares fp = new Squares();
 		
