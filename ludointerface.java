@@ -3,6 +3,18 @@ import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.geom.*;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Polygon;
+import java.awt.geom.Path2D;
+import java.awt.geom.Point2D;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 public class ludointerface extends JFrame {
 	
 	public ludointerface()
@@ -12,6 +24,9 @@ public class ludointerface extends JFrame {
 	/*Quero fazer igual ao site:https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Ludo_board.svg/2000px-Ludo_board.svg.png*/
 	// possiveis dicas: http://www.java-forums.org/new-java/8091-how-can-i-draw-board-2d-array.html
 	class Squares extends JPanel{
+
+		private static final long serialVersionUID = 1L;
+
 		public void paintComponent(Graphics g){
 			//Pintar Gquadrado Green 
 			super.paintComponents(g);
@@ -33,6 +48,8 @@ public class ludointerface extends JFrame {
 						gbp.setPaint(Color.red);
 					else if( (i==13 && j==0) || (i==13 && j==1) || (14 > i && i > 8 && j == 1) )
 						gbp.setPaint(Color.yellow);
+					else if( (i==1 && j == 0) || (i==13 && j == 2 ))
+						gbp.setPaint(Color.black);
 					else
 						gbp.setPaint(Color.WHITE);
 					Rectangle2D gb2dr = new Rectangle2D.Double(120+j*20,i*20,20,20); //coluna linha
@@ -51,6 +68,8 @@ public class ludointerface extends JFrame {
 						gbp.setPaint(Color.green);
 					else if( (i==2 && j==13) || (i==1 && j==13) || (14 > j && j > 8 && i == 1) )
 						gbp.setPaint(Color.blue);
+					else if( (i==2 && j == 1) || (i==0 && j == 13 ))
+						gbp.setPaint(Color.black);
 					else
 						gbp.setPaint(Color.WHITE);
 					Rectangle2D gb2dr = new Rectangle2D.Double(j*20,120+i*20,20,20); //coluna linha
@@ -131,15 +150,11 @@ public class ludointerface extends JFrame {
 			// 150}, 3)
 		}
 	}
+	private void initUI(){
 
-	private void initUI() {
-		Graphics g1;
-		Squares fp = new Squares();
-		
+		Squares fp = new Squares();	
         setTitle("Ludo Game");
         setSize(320,340);
-        
-        //setContentPane(p);
         getContentPane().add(fp);
         
         setLocationRelativeTo(null);
