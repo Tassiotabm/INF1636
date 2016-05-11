@@ -158,7 +158,7 @@ public class ludointerface extends JFrame {
 			g.drawOval(15,15,30,30);
 			// Green2 Small (T(x,y,r,r) = (x+3, y+3, r-6, r-6))
 			Graphics2D gEllipseGreen2=(Graphics2D) g;
-			gEllipseGreen2.setPaint(Color.green);
+			gEllipseGreen2.setPaint(Color.black);
 			Ellipse2D eg2 = new Ellipse2D.Double(18,18,24,24);
 			gEllipseGreen2.fill(eg2);
 			g.setColor(Color.black);
@@ -173,7 +173,7 @@ public class ludointerface extends JFrame {
 			g.drawOval(75,15,30,30);
 			// Green4 Small (T(x,y,r,r) = (x+3, y+3, r-6, r-6))
 			Graphics2D gEllipseGreen4=(Graphics2D) g;
-			gEllipseGreen4.setPaint(Color.green);
+			gEllipseGreen4.setPaint(Color.black);
 			Ellipse2D eg4 = new Ellipse2D.Double(78,18,24,24);
 			gEllipseGreen4.fill(eg4);
 			g.setColor(Color.black);
@@ -188,7 +188,7 @@ public class ludointerface extends JFrame {
 			g.drawOval(15,75,30,30);
 			// Green6 Small (T(x,y,r,r) = (x+3, y+3, r-6, r-6))
 			Graphics2D gEllipseGreen6=(Graphics2D) g;
-			gEllipseGreen6.setPaint(Color.green);
+			gEllipseGreen6.setPaint(Color.black);
 			Ellipse2D eg6 = new Ellipse2D.Double(18,78,24,24);
 			gEllipseGreen2.fill(eg6);
 			g.setColor(Color.black);
@@ -203,7 +203,7 @@ public class ludointerface extends JFrame {
 			g.drawOval(75,75,30,30);
 			// Green8 Small (T(x,y,r,r) = (x+3, y+3, r-6, r-6))
 			Graphics2D gEllipseGreen8=(Graphics2D) g;
-			gEllipseGreen4.setPaint(Color.green);
+			gEllipseGreen4.setPaint(Color.black);
 			Ellipse2D eg8 = new Ellipse2D.Double(78,78,24,24);
 			gEllipseGreen4.fill(eg8);
 			g.setColor(Color.black);
@@ -220,7 +220,7 @@ public class ludointerface extends JFrame {
 			g.drawOval(195,15,30,30);
 			// Red2 Small (T(x,y,r,r) = (x+3, y+3, r-6, r-6))
 			Graphics2D gEllipseRed2=(Graphics2D) g;
-			gEllipseGreen2.setPaint(Color.red);
+			gEllipseGreen2.setPaint(Color.black);
 			Ellipse2D er2 = new Ellipse2D.Double(198,18,24,24);
 			gEllipseGreen2.fill(er2);
 			g.setColor(Color.black);
@@ -235,7 +235,7 @@ public class ludointerface extends JFrame {
 			g.drawOval(255,15,30,30);
 			// Red4 Small (T(x,y,r,r) = (x+3, y+3, r-6, r-6))
 			Graphics2D gEllipseRed4=(Graphics2D) g;
-			gEllipseGreen4.setPaint(Color.red);
+			gEllipseGreen4.setPaint(Color.black);
 			Ellipse2D er4 = new Ellipse2D.Double(258,18,24,24);
 			gEllipseGreen4.fill(er4);
 			g.setColor(Color.black);
@@ -250,7 +250,7 @@ public class ludointerface extends JFrame {
 			g.drawOval(195,75,30,30);
 			// Red6 Small (T(x,y,r,r) = (x+3, y+3, r-6, r-6))
 			Graphics2D gEllipseRed6=(Graphics2D) g;
-			gEllipseGreen6.setPaint(Color.red);
+			gEllipseGreen6.setPaint(Color.black);
 			Ellipse2D er6 = new Ellipse2D.Double(198,78,24,24);
 			gEllipseGreen2.fill(er6);
 			g.setColor(Color.black);
@@ -265,7 +265,7 @@ public class ludointerface extends JFrame {
 			g.drawOval(255,75,30,30);
 			// Red8 Small (T(x,y,r,r) = (x+3, y+3, r-6, r-6))
 			Graphics2D gEllipseRed8=(Graphics2D) g;
-			gEllipseGreen4.setPaint(Color.red);
+			gEllipseGreen4.setPaint(Color.black);
 			Ellipse2D er8 = new Ellipse2D.Double(258,78,24,24);
 			gEllipseGreen4.fill(er8);
 			g.setColor(Color.black);
