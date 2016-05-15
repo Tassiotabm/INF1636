@@ -183,29 +183,29 @@ public class ludointerface extends JFrame {
 			Graphics2D gEllipseGreen5=(Graphics2D) g;
 			gEllipseGreen5.setPaint(Color.green);
 			Ellipse2D eg5 = new Ellipse2D.Double(15,75,30,30);
-			gEllipseGreen1.fill(eg5);
+			gEllipseGreen5.fill(eg5);
 			g.setColor(Color.black);
 			g.drawOval(15,75,30,30);
 			// Green6 Small (T(x,y,r,r) = (x+3, y+3, r-6, r-6))
 			Graphics2D gEllipseGreen6=(Graphics2D) g;
 			gEllipseGreen6.setPaint(Color.black);
 			Ellipse2D eg6 = new Ellipse2D.Double(18,78,24,24);
-			gEllipseGreen2.fill(eg6);
+			gEllipseGreen6.fill(eg6);
 			g.setColor(Color.black);
 			g.drawOval(18,78,24,24);
 			
 			// Green7 Big
 			Graphics2D gEllipseGreen7=(Graphics2D) g;
-			gEllipseGreen3.setPaint(Color.green);
+			gEllipseGreen7.setPaint(Color.green);
 			Ellipse2D eg7 = new Ellipse2D.Double(75,75,30,30);
-			gEllipseGreen3.fill(eg7);
+			gEllipseGreen7.fill(eg7);
 			g.setColor(Color.black);
 			g.drawOval(75,75,30,30);
 			// Green8 Small (T(x,y,r,r) = (x+3, y+3, r-6, r-6))
 			Graphics2D gEllipseGreen8=(Graphics2D) g;
-			gEllipseGreen4.setPaint(Color.black);
+			gEllipseGreen8.setPaint(Color.black);
 			Ellipse2D eg8 = new Ellipse2D.Double(78,78,24,24);
-			gEllipseGreen4.fill(eg8);
+			gEllipseGreen8.fill(eg8);
 			g.setColor(Color.black);
 			g.drawOval(78,78,24,24);
 			
@@ -213,64 +213,187 @@ public class ludointerface extends JFrame {
 			
 			// Red1 Big
 			Graphics2D gEllipseRed1=(Graphics2D) g;
-			gEllipseGreen1.setPaint(Color.red);
+			gEllipseRed1.setPaint(Color.red);
 			Ellipse2D er1 = new Ellipse2D.Double(195,15,30,30);
-			gEllipseGreen1.fill(er1);
+			gEllipseRed1.fill(er1);
 			g.setColor(Color.black);
 			g.drawOval(195,15,30,30);
 			// Red2 Small (T(x,y,r,r) = (x+3, y+3, r-6, r-6))
 			Graphics2D gEllipseRed2=(Graphics2D) g;
-			gEllipseGreen2.setPaint(Color.black);
+			gEllipseRed2.setPaint(Color.black);
 			Ellipse2D er2 = new Ellipse2D.Double(198,18,24,24);
-			gEllipseGreen2.fill(er2);
+			gEllipseRed2.fill(er2);
 			g.setColor(Color.black);
 			g.drawOval(198,18,24,24);
 			
 			// Red3 Big
 			Graphics2D gEllipseRed3=(Graphics2D) g;
-			gEllipseGreen3.setPaint(Color.red);
+			gEllipseRed3.setPaint(Color.red);
 			Ellipse2D er3 = new Ellipse2D.Double(255,15,30,30);
-			gEllipseGreen3.fill(er3);
+			gEllipseRed3.fill(er3);
 			g.setColor(Color.black);
 			g.drawOval(255,15,30,30);
 			// Red4 Small (T(x,y,r,r) = (x+3, y+3, r-6, r-6))
 			Graphics2D gEllipseRed4=(Graphics2D) g;
-			gEllipseGreen4.setPaint(Color.black);
+			gEllipseRed4.setPaint(Color.black);
 			Ellipse2D er4 = new Ellipse2D.Double(258,18,24,24);
-			gEllipseGreen4.fill(er4);
+			gEllipseRed4.fill(er4);
 			g.setColor(Color.black);
 			g.drawOval(258,18,24,24);
 			
 			// Red5 Big
 			Graphics2D gEllipseRed5=(Graphics2D) g;
-			gEllipseGreen5.setPaint(Color.red);
+			gEllipseRed5.setPaint(Color.red);
 			Ellipse2D er5 = new Ellipse2D.Double(195,75,30,30);
-			gEllipseGreen1.fill(er5);
+			gEllipseRed5.fill(er5);
 			g.setColor(Color.black);
 			g.drawOval(195,75,30,30);
 			// Red6 Small (T(x,y,r,r) = (x+3, y+3, r-6, r-6))
 			Graphics2D gEllipseRed6=(Graphics2D) g;
-			gEllipseGreen6.setPaint(Color.black);
+			gEllipseRed6.setPaint(Color.black);
 			Ellipse2D er6 = new Ellipse2D.Double(198,78,24,24);
-			gEllipseGreen2.fill(er6);
+			gEllipseRed6.fill(er6);
 			g.setColor(Color.black);
 			g.drawOval(198,78,24,24);
 			
 			// Red7 Big
 			Graphics2D gEllipseRed7=(Graphics2D) g;
-			gEllipseGreen3.setPaint(Color.red);
+			gEllipseRed7.setPaint(Color.red);
 			Ellipse2D er7 = new Ellipse2D.Double(255,75,30,30);
-			gEllipseGreen3.fill(er7);
+			gEllipseRed7.fill(er7);
 			g.setColor(Color.black);
 			g.drawOval(255,75,30,30);
 			// Red8 Small (T(x,y,r,r) = (x+3, y+3, r-6, r-6))
 			Graphics2D gEllipseRed8=(Graphics2D) g;
-			gEllipseGreen4.setPaint(Color.black);
+			gEllipseRed8.setPaint(Color.black);
 			Ellipse2D er8 = new Ellipse2D.Double(258,78,24,24);
-			gEllipseGreen4.fill(er8);
+			gEllipseRed8.fill(er8);
 			g.setColor(Color.black);
 			g.drawOval(258,78,24,24);
 			
+			// Desenhar os Círculos Amarelos
+			
+			// Yellow1 Big
+			Graphics2D gEllipseYellow1=(Graphics2D) g;
+			gEllipseYellow1.setPaint(Color.yellow);
+			Ellipse2D ey1 = new Ellipse2D.Double(15,195,30,30);
+			gEllipseYellow1.fill(ey1);
+			g.setColor(Color.black);
+			g.drawOval(15,195,30,30);
+			// Yellow2 Small (T(x,y,r,r) = (x+3, y+3, r-6, r-6))
+			Graphics2D gEllipseYellow2=(Graphics2D) g;
+			gEllipseYellow2.setPaint(Color.black);
+			Ellipse2D ey2 = new Ellipse2D.Double(18,198,24,24);
+			gEllipseYellow2.fill(ey2);
+			g.setColor(Color.black);
+			g.drawOval(18,198,24,24);
+			
+			// Yellow3 Big
+			Graphics2D gEllipseYellow3=(Graphics2D) g;
+			gEllipseYellow3.setPaint(Color.yellow);
+			Ellipse2D ey3 = new Ellipse2D.Double(75,195,30,30);
+			gEllipseGreen3.fill(ey3);
+			g.setColor(Color.black);
+			g.drawOval(75,195,30,30);
+			// Yellow4 Small (T(x,y,r,r) = (x+3, y+3, r-6, r-6))
+			Graphics2D gEllipseYellow4=(Graphics2D) g;
+			gEllipseYellow4.setPaint(Color.black);
+			Ellipse2D ey4 = new Ellipse2D.Double(78,198,24,24);
+			gEllipseYellow4.fill(ey4);
+			g.setColor(Color.black);
+			g.drawOval(78,198,24,24);
+			
+			// Yellow5 Big
+			Graphics2D gEllipseYellow5=(Graphics2D) g;
+			gEllipseYellow5.setPaint(Color.yellow);
+			Ellipse2D ey5 = new Ellipse2D.Double(15,255,30,30);
+			gEllipseYellow5.fill(ey5);
+			g.setColor(Color.black);
+			g.drawOval(15,255,30,30);
+			// Yellow6 Small (T(x,y,r,r) = (x+3, y+3, r-6, r-6))
+			Graphics2D gEllipseYellow6=(Graphics2D) g;
+			gEllipseYellow6.setPaint(Color.black);
+			Ellipse2D ey6 = new Ellipse2D.Double(18,258,24,24);
+			gEllipseYellow6.fill(ey6);
+			g.setColor(Color.black);
+			g.drawOval(18,258,24,24);
+			
+			// Yellow7 Big
+			Graphics2D gEllipseYellow7=(Graphics2D) g;
+			gEllipseYellow7.setPaint(Color.yellow);
+			Ellipse2D ey7 = new Ellipse2D.Double(75,255,30,30);
+			gEllipseYellow7.fill(ey7);
+			g.setColor(Color.black);
+			g.drawOval(75,255,30,30);
+			// Green8 Small (T(x,y,r,r) = (x+3, y+3, r-6, r-6))
+			Graphics2D gEllipseYellow8=(Graphics2D) g;
+			gEllipseYellow8.setPaint(Color.black);
+			Ellipse2D ey8 = new Ellipse2D.Double(78,258,24,24);
+			gEllipseYellow8.fill(ey8);
+			g.setColor(Color.black);
+			g.drawOval(78,258,24,24);
+			
+			//Desenhar Círculos Azuis
+			
+			// Blue1 Big
+			Graphics2D gEllipseBlue1=(Graphics2D) g;
+			gEllipseBlue1.setPaint(Color.blue);
+			Ellipse2D eb1 = new Ellipse2D.Double(195,195,30,30);
+			gEllipseBlue1.fill(eb1);
+			g.setColor(Color.black);
+			g.drawOval(195,195,30,30);
+			// Blue2 Small (T(x,y,r,r) = (x+3, y+3, r-6, r-6))
+			Graphics2D gEllipseBlue2=(Graphics2D) g;
+			gEllipseBlue2.setPaint(Color.black);
+			Ellipse2D eb2 = new Ellipse2D.Double(198,198,24,24);
+			gEllipseBlue2.fill(eb2);
+			g.setColor(Color.black);
+			g.drawOval(198,198,24,24);
+			
+			// Blue3 Big
+			Graphics2D gEllipseBlue3=(Graphics2D) g;
+			gEllipseBlue3.setPaint(Color.blue);
+			Ellipse2D eb3 = new Ellipse2D.Double(255,195,30,30);
+			gEllipseBlue3.fill(eb3);
+			g.setColor(Color.black);
+			g.drawOval(255,195,30,30);
+			// Blue4 Small (T(x,y,r,r) = (x+3, y+3, r-6, r-6))
+			Graphics2D gEllipseBlue4=(Graphics2D) g;
+			gEllipseBlue4.setPaint(Color.black);
+			Ellipse2D eb4 = new Ellipse2D.Double(258,198,24,24);
+			gEllipseBlue4.fill(eb4);
+			g.setColor(Color.black);
+			g.drawOval(258,198,24,24);
+			
+			// Blue5 Big
+			Graphics2D gEllipseBlue5=(Graphics2D) g;
+			gEllipseBlue5.setPaint(Color.blue);
+			Ellipse2D eb5 = new Ellipse2D.Double(195,255,30,30);
+			gEllipseBlue5.fill(eb5);
+			g.setColor(Color.black);
+			g.drawOval(195,255,30,30);
+			// Blue6 Small (T(x,y,r,r) = (x+3, y+3, r-6, r-6))
+			Graphics2D gEllipseBlue6=(Graphics2D) g;
+			gEllipseBlue6.setPaint(Color.black);
+			Ellipse2D eb6 = new Ellipse2D.Double(198,258,24,24);
+			gEllipseBlue6.fill(eb6);
+			g.setColor(Color.black);
+			g.drawOval(198,258,24,24);
+			
+			// Blue7 Big
+			Graphics2D gEllipseBlue7=(Graphics2D) g;
+			gEllipseBlue7.setPaint(Color.blue);
+			Ellipse2D eb7 = new Ellipse2D.Double(255,255,30,30);
+			gEllipseBlue7.fill(eb7);
+			g.setColor(Color.black);
+			g.drawOval(255,255,30,30);
+			// Blue8 Small (T(x,y,r,r) = (x+3, y+3, r-6, r-6))
+			Graphics2D gEllipseBlue8=(Graphics2D) g;
+			gEllipseBlue8.setPaint(Color.black);
+			Ellipse2D eb8 = new Ellipse2D.Double(258,258,24,24);
+			gEllipseBlue8.fill(eb8);
+			g.setColor(Color.black);
+			g.drawOval(258,258,24,24);
 			
 		}
 	}
