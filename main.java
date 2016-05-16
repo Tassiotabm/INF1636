@@ -8,6 +8,10 @@ public class main {
             @Override
             public void run() {
             	ludointerface ex = new ludointerface();
+            	
+            	//menu m = new menu();
+            	//m.setVisible(true);
+            	
                 ex.setVisible(true);
             }
         });
