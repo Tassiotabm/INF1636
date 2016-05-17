@@ -1,19 +1,13 @@
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.geom.*;
-
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Polygon;
 import java.awt.geom.Path2D;
-import java.awt.geom.Point2D;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+
+import javax.swing.BoxLayout;
 
 public class ludointerface extends JFrame {
 	
@@ -23,9 +17,7 @@ public class ludointerface extends JFrame {
 	}
 	/*Quero fazer igual ao site:https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Ludo_board.svg/2000px-Ludo_board.svg.png*/
 	// possiveis dicas: http://www.java-forums.org/new-java/8091-how-can-i-draw-board-2d-array.html
-	class Squares extends JPanel{
-
-		private static final long serialVersionUID = 1L;
+	class Tabuleiro extends JPanel{
 
 		public void paintComponent(Graphics g){
 			//Pintar Gquadrado Green 
@@ -36,6 +28,7 @@ public class ludointerface extends JFrame {
 			g1.fill(g1r);
 			g.setColor(Color.black);
 			g.drawRect(0,0,120,120);
+			
 
 			//Pintar Pquadrados brancos na vertical
 			int i,j;
@@ -395,18 +388,38 @@ public class ludointerface extends JFrame {
 			g.setColor(Color.black);
 			g.drawOval(258,258,24,24);
 			
+			//imprimir pinos
 		}
 	}
 	private void initUI(){
-
-		Squares fp = new Squares();	
+	
+		// Imprimir tabuleiro
+		Tabuleiro tabuleiro = new Tabuleiro();	
         setTitle("Ludo Game");
-        setSize(320,340);
-        getContentPane().add(fp);
-        
+        // Parte Direita do JFrame
+        JPanel PainelDireito = new JPanel();     
+        // Tive que ajustar manualmente o tamanho do JFRAME para o botão Jogar Dado ficar de boa.
+        setSize(416,340);
+        // Criar Botao Dado (Podemos Mudar para chamar a classe Dado e nela criar o botão....
+        JButton Dado = new JButton("Jogar Dado");
+        // Imprimir no ContentPane o tabuleiro
+        getContentPane().add(tabuleiro);
+
+        // criar os boxlayout
+        BoxLayout BlocoPrincipal = new BoxLayout(getContentPane(), BoxLayout.LINE_AXIS);
+        BoxLayout SubBloco = new BoxLayout(PainelDireito,  BoxLayout.Y_AXIS);
+        // ajustar o JPanel que fica dentro do boxlayout
+        PainelDireito.setAlignmentY(TOP_ALIGNMENT);
+        PainelDireito.setLayout(SubBloco);
+        setLayout(BlocoPrincipal); //adicionar ao JFRAME o layout do boxlayout que contem o JPanel do tabuleiro e do botao
+
+        PainelDireito.add(Dado);
+        // Adicionar o painel direito ao JFrame 
+        this.add(PainelDireito);
+       
+        // Saida Padrao
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
-	
 	
 }
