@@ -6,14 +6,19 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.*;
 import java.awt.geom.Path2D;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 
-public class LudoInterface extends JFrame {
+public class Ludointerface extends JFrame {
 	
-	public LudoInterface()
+	public Ludointerface()
 	{
 		initUI();
 	}
@@ -403,7 +408,7 @@ public class LudoInterface extends JFrame {
         JPanel PainelDireito = new JPanel();     
 
         // Criar Botao Dado (Podemos Mudar para chamar a classe Dado e nela criar o botão....
-        JButton Dado = new JButton("Jogar Dado");
+        JButton buttDado = new JButton("Jogar Dado");
         
         // Imprimir no ContentPane o tabuleiro
         getContentPane().add(tabuleiro);
@@ -417,16 +422,45 @@ public class LudoInterface extends JFrame {
         PainelDireito.setLayout(SubBloco);
         setLayout(BlocoPrincipal); //adicionar ao JFRAME o layout do boxlayout que contem o JPanel do tabuleiro e do botao
 
-        ImageIcon dadoimg = new ImageIcon("C:/Users/Tássio/Pictures/dice1.png");
+ 
+        
         //Image image = dadoimg.getImage();
         //Image newimage = image.getScaledInstance(100,100,java.awt.Image.SCALE_SMOOTH);
         //dadoimg = new ImageIcon(newimage);
-        
-        JLabel dadolabel = new JLabel("", dadoimg, JLabel.CENTER);
+        //ImageIcon dadoimg = new ImageIcon(img);
+       // ImageIcon dadoimg = new ImageIcon("images/dice6.png");
+       buttDado.addActionListener(new ActionListener() {
+    	   @Override
+    	   public void actionPerformed(ActionEvent event) {
+       	     Dado dice = new Dado();
+    	     int _throw = dice.newNumber();
+    	     System.out.println(dice.getNumber());
+    	     ImageIcon dadoimg = new ImageIcon();
+    	     switch(_throw){
+    	     case 1: dadoimg = dice.faces.elementAt(0);
+    	     	break;
+    	     case 2: dadoimg = dice.faces.elementAt(1);
+    	     	break;
+    	     case 3: dadoimg = dice.faces.elementAt(2);
+ 	     		break;
+    	     case 4: dadoimg = dice.faces.elementAt(3);
+ 	     		break;
+    	     case 5: dadoimg = dice.faces.elementAt(4);
+    	     	break;
+    	     case 6: dadoimg = dice.faces.elementAt(5);
+	     		break;
+	     	default :
+    	     }
+    	     JLabel dadolabel = new JLabel("", dadoimg, JLabel.CENTER);
+    	     PainelDireito.add(dadolabel);   
+    	     revalidate();
+    	   }
 
-        
-        PainelDireito.add(Dado);
-        PainelDireito.add(dadolabel);
+    	 });
+      // JLabel dadolabel = new JLabel("", dadoimg, JLabel.CENTER);
+
+        PainelDireito.add(buttDado);	  
+       // PainelDireito.add(dadolabel);  
         
         // Adicionar o painel direito ao JFrame 
         this.add(PainelDireito);

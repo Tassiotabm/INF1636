@@ -7,7 +7,7 @@ public class main {
             
             @Override
             public void run() {
-            	LudoInterface ex = new LudoInterface();
+            	Ludointerface ex = new Ludointerface();
                 ex.setVisible(true);
 
             }
