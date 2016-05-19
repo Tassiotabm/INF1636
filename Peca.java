@@ -1,4 +1,6 @@
 public class Peca {
 
-	public peca
+	public Peca(){
+		
+	}
 }
