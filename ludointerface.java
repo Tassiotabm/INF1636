@@ -1,7 +1,9 @@
 import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.geom.*;
@@ -9,9 +11,9 @@ import java.awt.geom.Path2D;
 
 import javax.swing.BoxLayout;
 
-public class ludointerface extends JFrame {
+public class LudoInterface extends JFrame {
 	
-	public ludointerface()
+	public LudoInterface()
 	{
 		initUI();
 	}
@@ -392,28 +394,40 @@ public class ludointerface extends JFrame {
 		}
 	}
 	private void initUI(){
-	
-		// Imprimir tabuleiro
+		// criar tabuleiro
 		Tabuleiro tabuleiro = new Tabuleiro();	
+		// caracteristicas do jframe
         setTitle("Ludo Game");
-        // Parte Direita do JFrame
+        setSize(416,340);  // Tive que ajustar manualmente o tamanho do JFRAME para o botão Jogar Dado ficar de boa.
+        
         JPanel PainelDireito = new JPanel();     
-        // Tive que ajustar manualmente o tamanho do JFRAME para o botão Jogar Dado ficar de boa.
-        setSize(416,340);
+
         // Criar Botao Dado (Podemos Mudar para chamar a classe Dado e nela criar o botão....
         JButton Dado = new JButton("Jogar Dado");
+        
         // Imprimir no ContentPane o tabuleiro
         getContentPane().add(tabuleiro);
 
         // criar os boxlayout
         BoxLayout BlocoPrincipal = new BoxLayout(getContentPane(), BoxLayout.LINE_AXIS);
         BoxLayout SubBloco = new BoxLayout(PainelDireito,  BoxLayout.Y_AXIS);
+        
         // ajustar o JPanel que fica dentro do boxlayout
         PainelDireito.setAlignmentY(TOP_ALIGNMENT);
         PainelDireito.setLayout(SubBloco);
         setLayout(BlocoPrincipal); //adicionar ao JFRAME o layout do boxlayout que contem o JPanel do tabuleiro e do botao
 
+        ImageIcon dadoimg = new ImageIcon("C:/Users/Tássio/Pictures/dice1.png");
+        //Image image = dadoimg.getImage();
+        //Image newimage = image.getScaledInstance(100,100,java.awt.Image.SCALE_SMOOTH);
+        //dadoimg = new ImageIcon(newimage);
+        
+        JLabel dadolabel = new JLabel("", dadoimg, JLabel.CENTER);
+
+        
         PainelDireito.add(Dado);
+        PainelDireito.add(dadolabel);
+        
         // Adicionar o painel direito ao JFrame 
         this.add(PainelDireito);
        
