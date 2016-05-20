@@ -9,50 +9,30 @@ public class Trajetos extends ArrayList{
 
 	private int px;
 	private int py;
-	private String cores;
 	
-	public void Init_Trajetos()
+	public void Init_TrajetosPrincipal(ArrayList<Trajetos> ListaCaminhoPrincipal)
 	{
 		/* Deve ser ajustada cada uma das coordenadas X e Y abaixo]
 		 * */
-		Trajetos Green = NewTrajetos(0,0,"Verde");
-		Trajetos Red = NewTrajetos(0,0,"Vermelho");
-		Trajetos Yellow = NewTrajetos(0,0,"Amarelo");
-		Trajetos Blue = NewTrajetos(0,0,"Azul");		
+		/* Digamos que o trajeto comeca na posicao 10 e 10*/
+		Trajetos CaminhoPrincipal = NewTrajetos(10,10);
+		ListaCaminhoPrincipal.add(0,CaminhoPrincipal);
 		
-		ArrayList<Trajetos> Verdes = new ArrayList<Trajetos>();
-		ArrayList<Trajetos> Vermelho = new ArrayList<Trajetos>();
-		ArrayList<Trajetos> Amarelo = new ArrayList<Trajetos>();
-		ArrayList<Trajetos> Azul = new ArrayList<Trajetos>();
-		
-		Verdes.add(0,Green);
-		Vermelho.add(0,Red);
-		Amarelo.add(0,Yellow);
-		Azul.add(0,Blue);
+		/* Vamos popular essa lista, colocando em cada posicao da lista um novo
+		 * objeto de Trajeto, que possui a posicao X e Y correspondente aos quadrados*/
 		
 		/*É nesse for que vai ser necessário os um milhao de ifs*/
-		for(int i=1;i<32;i++)
-			Verdes.add(i,NewTrajetos(i*10,i*20,"Verde"));
-		
-		/*É nesse for que vai ser necessário os um milhao de ifs*/
-		for(int i=1;i<32;i++)
-			Azul.add(i,NewTrajetos(i*10,i*20,"Azul"));
-		
-		/*É nesse for que vai ser necessário os um milhao de ifs*/
-		for(int i=1;i<32;i++)
-			Amarelo.add(i,NewTrajetos(i*10,i*20,"Amarelo"));
-		
-		/*É nesse for que vai ser necessário os um milhao de ifs*/
-		for(int i=1;i<32;i++)
-			Vermelho.add(i,NewTrajetos(i*10,i*20,"Vermelho"));
+		for(int i=1;i<52;i++){
+			ListaCaminhoPrincipal.add(i,NewTrajetos(i*10,i*20));
+		}
+			
 	}
 	
-	public Trajetos NewTrajetos(int x, int y, String cor)
+	public Trajetos NewTrajetos(int x, int y)
 	{
 		Trajetos a = new Trajetos();
 		a.px = x;
 		a.py = y;
-		a.cores = cor;
 		return a;
 	}
 	
