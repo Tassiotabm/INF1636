@@ -424,11 +424,12 @@ public class Ludointerface extends JFrame {
 
  
         
-        //Image image = dadoimg.getImage();
+        //Image image = dadoimg.getImage(); //RESIZE IMAGE
         //Image newimage = image.getScaledInstance(100,100,java.awt.Image.SCALE_SMOOTH);
         //dadoimg = new ImageIcon(newimage);
         //ImageIcon dadoimg = new ImageIcon(img);
        // ImageIcon dadoimg = new ImageIcon("images/dice6.png");
+        JLabel dadolabel = new JLabel();
        buttDado.addActionListener(new ActionListener() {
     	   @Override
     	   public void actionPerformed(ActionEvent event) {
@@ -451,7 +452,7 @@ public class Ludointerface extends JFrame {
 	     		break;
 	     	default :
     	     }
-    	     JLabel dadolabel = new JLabel("", dadoimg, JLabel.CENTER);
+    	     dadolabel.setIcon(dadoimg);
     	     PainelDireito.add(dadolabel);   
     	     revalidate();
     	   }
@@ -464,7 +465,21 @@ public class Ludointerface extends JFrame {
         
         // Adicionar o painel direito ao JFrame 
         this.add(PainelDireito);
-       
+        
+        // Trajetos das peças
+        Trajeto greenPath = new Trajeto("Verde"); //Cria um trajeto dos tokens verdes
+        Trajeto bluePath = new Trajeto("Azul"); //Cria um trajeto dos tokens azuis
+        //Tokens Label
+        JLabel greenTokenLabel = new JLabel(new Token("Verde").token); //JLabel possui a imagem do token verde como ícone
+        JLabel blueTokenLabel = new JLabel(new Token("Azul").token); //JLabel possue a imagem do token azul como ícone
+        
+        blueTokenLabel.setLocation(bluePath.path.get(0)); // Ponto inicial do trajeto azul
+        greenTokenLabel.setLocation(greenPath.path.get(0)); //ponto inicial do trajeto verde
+        
+        // ISSO AQUI TA ERRADO
+        getContentPane().add(blueTokenLabel);
+        getContentPane().add(greenTokenLabel);
+        
         // Saida Padrao
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
