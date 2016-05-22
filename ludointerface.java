@@ -12,18 +12,22 @@ import java.awt.geom.*;
 import java.awt.geom.Path2D;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
+import java.awt.Point;
 
 public class Ludointerface extends JFrame {
+	
+	static int valor_dado = 0;
+	static int vez_do_jogador = 0;
 	
 	public Ludointerface()
 	{
 		initUI();
 	}
-	/*Quero fazer igual ao site:https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Ludo_board.svg/2000px-Ludo_board.svg.png*/
-	// possiveis dicas: http://www.java-forums.org/new-java/8091-how-can-i-draw-board-2d-array.html
+
 	class Tabuleiro extends JPanel{
 
 		public void paintComponent(Graphics g){
@@ -395,15 +399,53 @@ public class Ludointerface extends JFrame {
 			g.setColor(Color.black);
 			g.drawOval(258,258,24,24);
 			
-			//imprimir pinos
+			//imprimir as peças
+			// Como funciona: 
+			// Quando dermos validate, na chamada do botao, temos que "ativar a criacao dos pinos. mas como?
+			// Vamos deixar uma variavel para receber o valor jogado do dado, caso exista alguma valor, a jogada
+			// foi realizada. Assim ela entra para colocar os icones o JFRAME.
+			
+			if (valor_dado > 0)
+			{
+
+				if( (vez_do_jogador%2) == 0)
+				{
+
+					Graphics2D CirculoTeste = (Graphics2D) g;
+					CirculoTeste.setPaint(Color.GREEN);
+					Ellipse2D CirculoTeste2 = new Ellipse2D.Double(100,100,40,40);
+					// a ideia eh usar o tx1 e o ty1 obtidos do tabuleiro
+					//Ellipse2D CirculoTeste2 = new Ellipse2D.Double(tx1,ty1,40,40);
+					gEllipseBlue8.fill(CirculoTeste2);
+					vez_do_jogador++;
+				}
+				else
+				{
+					Graphics2D CirculoTeste3 = (Graphics2D) g;
+					CirculoTeste3.setPaint(Color.YELLOW);
+					Ellipse2D CirculoTeste4 = new Ellipse2D.Double(200,200,40,40);
+					gEllipseBlue8.fill(CirculoTeste4);
+					vez_do_jogador++;
+				}
+				valor_dado = 0;
+			}
+
+			
 		}
 	}
 	private void initUI(){
+		
+		ArrayList<Trajeto> ListaTrajetos = new ArrayList<Trajeto>();
+		ListaTrajetos.add(new Trajeto("Verde"));
+		ListaTrajetos.add(new Trajeto("Azul"));
+		ListaTrajetos.add(new Trajeto("Vermelho"));
+		ListaTrajetos.add(new Trajeto("Amarelo"));
+		
 		// criar tabuleiro
 		Tabuleiro tabuleiro = new Tabuleiro();	
 		// caracteristicas do jframe
         setTitle("Ludo Game");
-        setSize(416,340);  // Tive que ajustar manualmente o tamanho do JFRAME para o botão Jogar Dado ficar de boa.
+        setSize(420,340);  // Tive que ajustar manualmente o tamanho do JFRAME para o botão Jogar Dado ficar de boa.
         
         JPanel PainelDireito = new JPanel();     
 
@@ -421,10 +463,8 @@ public class Ludointerface extends JFrame {
         PainelDireito.setAlignmentY(TOP_ALIGNMENT);
         PainelDireito.setLayout(SubBloco);
         setLayout(BlocoPrincipal); //adicionar ao JFRAME o layout do boxlayout que contem o JPanel do tabuleiro e do botao
-
- 
         
-        //Image image = dadoimg.getImage(); //RESIZE IMAGE
+         //Image image = dadoimg.getImage(); //RESIZE IMAGE
         //Image newimage = image.getScaledInstance(100,100,java.awt.Image.SCALE_SMOOTH);
         //dadoimg = new ImageIcon(newimage);
         //ImageIcon dadoimg = new ImageIcon(img);
@@ -435,7 +475,7 @@ public class Ludointerface extends JFrame {
     	   public void actionPerformed(ActionEvent event) {
        	     Dado dice = new Dado();
     	     int _throw = dice.newNumber();
-    	     System.out.println(dice.getNumber());
+    	     valor_dado = dice.getNumber();
     	     ImageIcon dadoimg = new ImageIcon();
     	     switch(_throw){
     	     case 1: dadoimg = dice.faces.elementAt(0);
@@ -458,7 +498,8 @@ public class Ludointerface extends JFrame {
     	   }
 
     	 });
-      // JLabel dadolabel = new JLabel("", dadoimg, JLabel.CENTER);
+      
+       // JLabel dadolabel = new JLabel("", dadoimg, JLabel.CENTER);
 
         PainelDireito.add(buttDado);	  
        // PainelDireito.add(dadolabel);  
@@ -476,10 +517,7 @@ public class Ludointerface extends JFrame {
         blueTokenLabel.setLocation(bluePath.path.get(0)); // Ponto inicial do trajeto azul
         greenTokenLabel.setLocation(greenPath.path.get(0)); //ponto inicial do trajeto verde
         
-        // ISSO AQUI TA ERRADO
-        getContentPane().add(blueTokenLabel);
-        getContentPane().add(greenTokenLabel);
-        
+
         // Saida Padrao
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);

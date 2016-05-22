@@ -3,7 +3,7 @@ import java.awt.Point;
 
 public class Trajeto{
 	
-	ArrayList<Point> path = new ArrayList<Point>();
+	public ArrayList<Point> path = new ArrayList<Point>();
 	public Trajeto (String Cor){
 		/* Cada cor terá um trajeto diferente */
 		switch (Cor){
