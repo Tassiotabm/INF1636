@@ -22,9 +22,8 @@ public class Ludointerface extends JFrame {
 	
 	static int valor_dado = 0;
 	static int vez_do_jogador = 0;
-	int k = 0;
-	int l = 0;
-    int puta = 0;
+	static int index1 = 0;
+	static int index2 = 0;
 	public Ludointerface()
 	{
 		initUI();
@@ -409,43 +408,41 @@ public class Ludointerface extends JFrame {
 			
 			Trajeto greenPath = new Trajeto("Verde"); //Cria um trajeto dos tokens verdes
 	        Trajeto yellowPath = new Trajeto("Amarelo"); //Cria um trajeto dos tokens azuis
-	        Ellipse2D CirculoTeste2 = new Ellipse2D.Double(greenPath.path.get(k).x,greenPath.path.get(k).y,20,20);
-	        Ellipse2D CirculoTeste4 = new Ellipse2D.Double(yellowPath.path.get(l).x,yellowPath.path.get(l).y,20,20);
+	        Ellipse2D CirculoTeste2 = new Ellipse2D.Double(greenPath.path.get(index1).x,greenPath.path.get(index1).y,20,20);
+	        Ellipse2D CirculoTeste4 = new Ellipse2D.Double(yellowPath.path.get(index2).x,yellowPath.path.get(index2).y,20,20);
 	        Graphics2D CirculoTeste = (Graphics2D) g;
 	        Graphics2D CirculoTeste3 = (Graphics2D) g;
 	        System.out.println(" Valor do dado = " + valor_dado);
 			if (valor_dado > 0)
 			{
-				System.out.println("Puta = " + puta);
-				puta++;
 				if( (vez_do_jogador%2) == 0)
 				{
-					k=k+valor_dado;
+					index1=index1+valor_dado;
 					CirculoTeste.setPaint(Color.GREEN);
-					CirculoTeste2.setFrame(greenPath.path.get(k).x, greenPath.path.get(k).y, 20, 20);
+					CirculoTeste2.setFrame(greenPath.path.get(index1).x, greenPath.path.get(index1).y, 20, 20);
 					// a ideia eh usar o tx1 e o ty1 obtidos do tabuleiro
 					//Ellipse2D CirculoTeste2 = new Ellipse2D.Double(tx1,ty1,40,40);
 					CirculoTeste.fill(CirculoTeste2);
 					CirculoTeste.setPaint(Color.black);
-					CirculoTeste.drawOval(greenPath.path.get(k).x, greenPath.path.get(k).y, 20, 20);
+					CirculoTeste.drawOval(greenPath.path.get(index1).x, greenPath.path.get(index1).y, 20, 20);
 					CirculoTeste.setPaint(Color.yellow);
 					CirculoTeste3.fill(CirculoTeste4);
 					CirculoTeste.setPaint(Color.black);
-					CirculoTeste.drawOval(yellowPath.path.get(l).x,yellowPath.path.get(l).y,20,20);
+					CirculoTeste.drawOval(yellowPath.path.get(index2).x,yellowPath.path.get(index2).y,20,20);
 					vez_do_jogador++;
 				}
 				else
 				{
-					l=l+valor_dado;
+					index2=index2+valor_dado;
 					CirculoTeste3.setPaint(Color.YELLOW);
-					CirculoTeste4.setFrame(yellowPath.path.get(l).x,yellowPath.path.get(l).y,20,20);
+					CirculoTeste4.setFrame(yellowPath.path.get(index2).x,yellowPath.path.get(index2).y,20,20);
 					CirculoTeste3.fill(CirculoTeste4);
 					CirculoTeste.setPaint(Color.black);
-					CirculoTeste.drawOval(yellowPath.path.get(l).x,yellowPath.path.get(l).y,20,20);
+					CirculoTeste.drawOval(yellowPath.path.get(index2).x,yellowPath.path.get(index2).y,20,20);
 					CirculoTeste.setPaint(Color.green);
 					CirculoTeste.fill(CirculoTeste2);
 					CirculoTeste.setPaint(Color.black);
-					CirculoTeste.drawOval(greenPath.path.get(k).x, greenPath.path.get(k).y, 20, 20);
+					CirculoTeste.drawOval(greenPath.path.get(index1).x, greenPath.path.get(index1).y, 20, 20);
 
 					vez_do_jogador++;
 				}
