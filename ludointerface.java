@@ -22,7 +22,9 @@ public class Ludointerface extends JFrame {
 	
 	static int valor_dado = 0;
 	static int vez_do_jogador = 0;
-	
+	int k = 0;
+	int l = 0;
+    int puta = 0;
 	public Ludointerface()
 	{
 		initUI();
@@ -405,26 +407,46 @@ public class Ludointerface extends JFrame {
 			// Vamos deixar uma variavel para receber o valor jogado do dado, caso exista alguma valor, a jogada
 			// foi realizada. Assim ela entra para colocar os icones o JFRAME.
 			
+			Trajeto greenPath = new Trajeto("Verde"); //Cria um trajeto dos tokens verdes
+	        Trajeto yellowPath = new Trajeto("Amarelo"); //Cria um trajeto dos tokens azuis
+	        Ellipse2D CirculoTeste2 = new Ellipse2D.Double(greenPath.path.get(k).x,greenPath.path.get(k).y,20,20);
+	        Ellipse2D CirculoTeste4 = new Ellipse2D.Double(yellowPath.path.get(l).x,yellowPath.path.get(l).y,20,20);
+	        Graphics2D CirculoTeste = (Graphics2D) g;
+	        Graphics2D CirculoTeste3 = (Graphics2D) g;
+	        System.out.println(" Valor do dado = " + valor_dado);
 			if (valor_dado > 0)
 			{
-
+				System.out.println("Puta = " + puta);
+				puta++;
 				if( (vez_do_jogador%2) == 0)
 				{
-
-					Graphics2D CirculoTeste = (Graphics2D) g;
+					k=k+valor_dado;
 					CirculoTeste.setPaint(Color.GREEN);
-					Ellipse2D CirculoTeste2 = new Ellipse2D.Double(100,100,40,40);
+					CirculoTeste2.setFrame(greenPath.path.get(k).x, greenPath.path.get(k).y, 20, 20);
 					// a ideia eh usar o tx1 e o ty1 obtidos do tabuleiro
 					//Ellipse2D CirculoTeste2 = new Ellipse2D.Double(tx1,ty1,40,40);
-					gEllipseBlue8.fill(CirculoTeste2);
+					CirculoTeste.fill(CirculoTeste2);
+					CirculoTeste.setPaint(Color.black);
+					CirculoTeste.drawOval(greenPath.path.get(k).x, greenPath.path.get(k).y, 20, 20);
+					CirculoTeste.setPaint(Color.yellow);
+					CirculoTeste3.fill(CirculoTeste4);
+					CirculoTeste.setPaint(Color.black);
+					CirculoTeste.drawOval(yellowPath.path.get(l).x,yellowPath.path.get(l).y,20,20);
 					vez_do_jogador++;
 				}
 				else
 				{
-					Graphics2D CirculoTeste3 = (Graphics2D) g;
+					l=l+valor_dado;
 					CirculoTeste3.setPaint(Color.YELLOW);
-					Ellipse2D CirculoTeste4 = new Ellipse2D.Double(200,200,40,40);
-					gEllipseBlue8.fill(CirculoTeste4);
+					CirculoTeste4.setFrame(yellowPath.path.get(l).x,yellowPath.path.get(l).y,20,20);
+					CirculoTeste3.fill(CirculoTeste4);
+					CirculoTeste.setPaint(Color.black);
+					CirculoTeste.drawOval(yellowPath.path.get(l).x,yellowPath.path.get(l).y,20,20);
+					CirculoTeste.setPaint(Color.green);
+					CirculoTeste.fill(CirculoTeste2);
+					CirculoTeste.setPaint(Color.black);
+					CirculoTeste.drawOval(greenPath.path.get(k).x, greenPath.path.get(k).y, 20, 20);
+
 					vez_do_jogador++;
 				}
 				valor_dado = 0;
@@ -476,6 +498,7 @@ public class Ludointerface extends JFrame {
        	     Dado dice = new Dado();
     	     int _throw = dice.newNumber();
     	     valor_dado = dice.getNumber();
+    	     System.out.println("Valor o dado dentro do initUI = " + valor_dado);
     	     ImageIcon dadoimg = new ImageIcon();
     	     switch(_throw){
     	     case 1: dadoimg = dice.faces.elementAt(0);
@@ -490,17 +513,17 @@ public class Ludointerface extends JFrame {
     	     	break;
     	     case 6: dadoimg = dice.faces.elementAt(5);
 	     		break;
-	     	default :
+	     	default :;
     	     }
     	     dadolabel.setIcon(dadoimg);
     	     PainelDireito.add(dadolabel);   
     	     revalidate();
+    	     repaint();
     	   }
 
     	 });
-      
        // JLabel dadolabel = new JLabel("", dadoimg, JLabel.CENTER);
-
+      // repaint();
         PainelDireito.add(buttDado);	  
        // PainelDireito.add(dadolabel);  
         
