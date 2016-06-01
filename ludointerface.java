@@ -76,16 +76,21 @@ public class Ludointerface extends JFrame {
 			}
 			
 			//pintar Gquadrado Green
-			QuadradoGrande GGREEN = new QuadradoGrande(0,0,g,"green",4);
+			QuadradoGrande GGREEN = new QuadradoGrande(0,0,"Green");
+			GGREEN.Print(g);
 			//pintar Gquadrado Red
-			QuadradoGrande GRED = new QuadradoGrande(180,0,g, "red",4);
+			QuadradoGrande GRED = new QuadradoGrande(180,0,"Red");
+			GRED.Print(g);
 			//pintar Gquadrado Yellow
-			QuadradoGrande GYELLOW = new QuadradoGrande(0,180,g,"yellow",4);
+			QuadradoGrande GYELLOW = new QuadradoGrande(0,180,"Yellow");
+			GYELLOW.Print(g);
 			//pintar Gquadrado Blue
-			QuadradoGrande GBLUE = new QuadradoGrande(180,180,g,"blue",4);
+			QuadradoGrande GBLUE = new QuadradoGrande(180,180,"Blue");
+			GBLUE.Print(g);
 			
 			Triangulo Triangulos = new Triangulo(g);
 		
+
 			
 			//imprimir as peças
 			// Como funciona: 
@@ -95,6 +100,8 @@ public class Ludointerface extends JFrame {
 			
 			Trajeto greenPath = new Trajeto("Verde"); //Cria um trajeto dos tokens verdes
 	        Trajeto yellowPath = new Trajeto("Amarelo"); //Cria um trajeto dos tokens azuis
+	        
+	        
 	        Ellipse2D CirculoTeste2 = new Ellipse2D.Double(greenPath.path.get(index1).x,greenPath.path.get(index1).y,20,20);
 	        Ellipse2D CirculoTeste4 = new Ellipse2D.Double(yellowPath.path.get(index2).x,yellowPath.path.get(index2).y,20,20);
 	        Graphics2D CirculoTeste = (Graphics2D) g;
@@ -107,8 +114,6 @@ public class Ludointerface extends JFrame {
 					index1=index1+valor_dado;
 					CirculoTeste.setPaint(Color.GREEN);
 					CirculoTeste2.setFrame(greenPath.path.get(index1).x, greenPath.path.get(index1).y, 20, 20);
-					// a ideia eh usar o tx1 e o ty1 obtidos do tabuleiro
-					//Ellipse2D CirculoTeste2 = new Ellipse2D.Double(tx1,ty1,40,40);
 					CirculoTeste.fill(CirculoTeste2);
 					CirculoTeste.setPaint(Color.black);
 					CirculoTeste.drawOval(greenPath.path.get(index1).x, greenPath.path.get(index1).y, 20, 20);
