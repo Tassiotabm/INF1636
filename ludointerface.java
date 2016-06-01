@@ -76,13 +76,13 @@ public class Ludointerface extends JFrame {
 			}
 			
 			//pintar Gquadrado Green
-			QuadradoGrande GGREEN = new QuadradoGrande(0,0,g,"green");
+			QuadradoGrande GGREEN = new QuadradoGrande(0,0,g,"green",4);
 			//pintar Gquadrado Red
-			QuadradoGrande GRED = new QuadradoGrande(180,0,g, "red");
+			QuadradoGrande GRED = new QuadradoGrande(180,0,g, "red",4);
 			//pintar Gquadrado Yellow
-			QuadradoGrande GYELLOW = new QuadradoGrande(0,180,g,"yellow");
+			QuadradoGrande GYELLOW = new QuadradoGrande(0,180,g,"yellow",4);
 			//pintar Gquadrado Blue
-			QuadradoGrande GBLUE = new QuadradoGrande(180,180,g,"blue");
+			QuadradoGrande GBLUE = new QuadradoGrande(180,180,g,"blue",4);
 			
 			/*
 			 * Path2D.Double triangle = new Path2D.Double(); triangle.moveTo(x1,
@@ -130,15 +130,6 @@ public class Ludointerface extends JFrame {
 			triangle4.lineTo(150, 150);
 			triangle4.closePath();
 			t4.fill(triangle4);
-
-			// Desenhar os Círculos Verdes
-
-			//Desenhar Círculos Vermelhos
-
-			//Desenhar Circulos Yellow
-
-			//Desenhar Circulos Azuis
-
 			
 			//imprimir as peças
 			// Como funciona: 
