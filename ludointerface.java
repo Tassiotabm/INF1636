@@ -84,52 +84,8 @@ public class Ludointerface extends JFrame {
 			//pintar Gquadrado Blue
 			QuadradoGrande GBLUE = new QuadradoGrande(180,180,g,"blue",4);
 			
-			/*
-			 * Path2D.Double triangle = new Path2D.Double(); triangle.moveTo(x1,
-			 * y1); triangle.pathTo(x2, y2); triangle.pathTo(x3, y3);
-			 * triangle.closePath(); g2d.fill(triangle);
-			 */
-
-			// pintar triângulo 1 Green
-			Graphics2D t1 = (Graphics2D) g;
-			t1.setPaint(Color.green);
-			Path2D.Double triangle = new Path2D.Double();
-			triangle.moveTo(120, 120);
-			triangle.lineTo(120, 180);
-			triangle.lineTo(150, 150);
-			triangle.closePath();
-			t1.fill(triangle);
-			// pintar triângulo 2 Red
-			Graphics2D t2 = (Graphics2D) g;
-			t2.setPaint(Color.red);
-			Path2D.Double triangle2 = new Path2D.Double();
-			triangle2.moveTo(120, 120);
-			triangle2.lineTo(180, 120);
-			triangle2.lineTo(150, 150);
-			triangle2.closePath();
-			t2.fill(triangle2);
-			// g.drawPolygon(new int[] {120, 180, 150}, new int[] {120, 120,
-			// 150}, 3);
-			// pintar triângulo 3 Blue
-			Graphics2D t3 = (Graphics2D) g;
-			t3.setPaint(Color.blue);
-			Path2D.Double triangle3 = new Path2D.Double();
-			triangle3.moveTo(180, 120);
-			triangle3.lineTo(180, 180);
-			triangle3.lineTo(150, 150);
-			triangle3.closePath();
-			t3.fill(triangle3);
-			// g.drawPolygon(new int[] {180, 180, 150}, new int[] {120, 180,
-			// 150}, 3);
-			// pintar triângulo 4 Yellow
-			Graphics2D t4 = (Graphics2D) g;
-			t4.setPaint(Color.yellow);
-			Path2D.Double triangle4 = new Path2D.Double();
-			triangle4.moveTo(120, 180);
-			triangle4.lineTo(180, 180);
-			triangle4.lineTo(150, 150);
-			triangle4.closePath();
-			t4.fill(triangle4);
+			Triangulo Triangulos = new Triangulo(g);
+		
 			
 			//imprimir as peças
 			// Como funciona: 
@@ -259,14 +215,14 @@ public class Ludointerface extends JFrame {
         this.add(PainelDireito);
         
         // Trajetos das peças
-        Trajeto greenPath = new Trajeto("Verde"); //Cria um trajeto dos tokens verdes
-        Trajeto bluePath = new Trajeto("Azul"); //Cria um trajeto dos tokens azuis
+        //Trajeto greenPath = new Trajeto("Verde"); //Cria um trajeto dos tokens verdes
+        //Trajeto bluePath = new Trajeto("Azul"); //Cria um trajeto dos tokens azuis
         //Tokens Label
-        JLabel greenTokenLabel = new JLabel(new Token("Verde").token); //JLabel possui a imagem do token verde como ícone
-        JLabel blueTokenLabel = new JLabel(new Token("Azul").token); //JLabel possue a imagem do token azul como ícone
+        //JLabel greenTokenLabel = new JLabel(new Token("Verde").token); //JLabel possui a imagem do token verde como ícone
+        //JLabel blueTokenLabel = new JLabel(new Token("Azul").token); //JLabel possue a imagem do token azul como ícone
         
-        blueTokenLabel.setLocation(bluePath.path.get(0)); // Ponto inicial do trajeto azul
-        greenTokenLabel.setLocation(greenPath.path.get(0)); //ponto inicial do trajeto verde
+        //blueTokenLabel.setLocation(bluePath.path.get(0)); // Ponto inicial do trajeto azul
+        //greenTokenLabel.setLocation(greenPath.path.get(0)); //ponto inicial do trajeto verde
         
 
         // Saida Padrao
