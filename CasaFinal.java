@@ -9,12 +9,14 @@ public class CasaFinal {
 	private String cor;
 	private int qtdToken;
 
+	// Construtor
 	public CasaFinal(String Cor) {
 		this.cor = Cor;
 		this.qtdToken = 0;
 	}
+	// Adicionar peça
 	public boolean addToken(){
-		if(qtdToken == 4){
+		if(qtdToken == 4){ // limite de peças na casa final
 			System.out.println("Casa Final cheia, nao ha como adicionar mais tokens");
 			return false;
 		}
@@ -22,6 +24,11 @@ public class CasaFinal {
 		qtdToken ++;
 		return true;
 		}
+	}
+	
+	public int getQtdToken(){
+		
+		return this.qtdToken;
 	}
 	public void print(Graphics g){
 		switch(this.cor){

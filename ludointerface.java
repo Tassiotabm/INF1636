@@ -76,19 +76,46 @@ public class Ludointerface extends JFrame {
 			}
 			
 			//pintar Gquadrado Green
-			QuadradoGrande GGREEN = new QuadradoGrande(0,0,"Green");
+			QuadradoGrande GGREEN = new QuadradoGrande(0,0,"Verde");
 			GGREEN.Print(g);
 			//pintar Gquadrado Red
-			QuadradoGrande GRED = new QuadradoGrande(180,0,"Red");
+			QuadradoGrande GRED = new QuadradoGrande(180,0,"Vermelho");
 			GRED.Print(g);
 			//pintar Gquadrado Yellow
-			QuadradoGrande GYELLOW = new QuadradoGrande(0,180,"Yellow");
+			QuadradoGrande GYELLOW = new QuadradoGrande(0,180,"Amarelo");
 			GYELLOW.Print(g);
 			//pintar Gquadrado Blue
-			QuadradoGrande GBLUE = new QuadradoGrande(180,180,"Blue");
+			QuadradoGrande GBLUE = new QuadradoGrande(180,180,"Azul");
 			GBLUE.Print(g);
 			
-			Triangulo Triangulos = new Triangulo(g);
+			// Casas de chegada
+			CasaFinal greenHome = new CasaFinal("Verde");
+			CasaFinal redHome = new CasaFinal("Vermelho");
+			CasaFinal yellowHome = new CasaFinal("Amarelo");
+			CasaFinal blueHome = new CasaFinal("Azul");
+			
+			// 1 token na casa verde
+			greenHome.addToken();
+			
+			// 2 token na casa vermelha
+			redHome.addToken();
+			redHome.addToken();
+			// 3 token na casa amarela
+			yellowHome.addToken();
+			yellowHome.addToken();
+			yellowHome.addToken();
+			
+			// 4 token na casa azul
+			blueHome.addToken();
+			blueHome.addToken();
+			blueHome.addToken();
+			blueHome.addToken();
+			
+			//print homes
+			greenHome.print(g);
+			redHome.print(g);
+			yellowHome.print(g);
+			blueHome.print(g);
 		
 
 			

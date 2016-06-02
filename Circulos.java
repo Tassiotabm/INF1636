@@ -17,7 +17,7 @@ public class Circulos {
 		
 		Graphics2D g = (Graphics2D) G;
 		
-		if(cor == "Green"){ // Green Big
+		if(cor == "Verde"){ // Green Big
 			Graphics2D gEllipseGreen=(Graphics2D) g;
 			gEllipseGreen.setPaint(Color.green);
 			Ellipse2D eg1 = new Ellipse2D.Double(x1,y1,30,30);
@@ -25,7 +25,7 @@ public class Circulos {
 			g.setColor(Color.black);
 			g.drawOval(x1,y1,30,30);
 		}
-		else if(cor == "Red"){ // Red Big
+		else if(cor == "Vermelho"){ // Red Big
 			Graphics2D gEllipseRed=(Graphics2D) g;
 			gEllipseRed.setPaint(Color.red);
 			Ellipse2D er1 = new Ellipse2D.Double(x1,y1,30,30);
@@ -33,7 +33,7 @@ public class Circulos {
 			g.setColor(Color.black);
 			g.drawOval(x1,y1,30,30);
 		}
-		else if(cor == "Black"){ // Black
+		else if(cor == "Preto"){ // Black
 			Graphics2D gSmall=(Graphics2D) g;
 			gSmall.setPaint(Color.black);
 			Ellipse2D eg2 = new Ellipse2D.Double(x1,y1,24,24);
@@ -41,7 +41,7 @@ public class Circulos {
 			g.setColor(Color.black);
 			g.drawOval(x1,y1,24,24);
 		}
-		else if(cor == "Yellow"){
+		else if(cor == "Amarelo"){
 			Graphics2D gEllipseYellow=(Graphics2D) g;
 			gEllipseYellow.setPaint(Color.yellow);
 			Ellipse2D ey1 = new Ellipse2D.Double(x1,y1,30,30);
@@ -49,7 +49,7 @@ public class Circulos {
 			g.setColor(Color.black);
 			g.drawOval(x1,y1,30,30);
 		}
-		else if(cor == "Blue"){ // cor == "B"
+		else if(cor == "Azul"){ // cor == "B"
 			Graphics2D gEllipseBlue=(Graphics2D) g;
 			gEllipseBlue.setPaint(Color.blue);
 			Ellipse2D eb1 = new Ellipse2D.Double(x1,y1,30,30);
