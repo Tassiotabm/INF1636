@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 public class Token {
 	private String cor;
 	private int position;
+	public boolean inGame;
 	// Trajetos estáticos, são os mesmos para cada peça
 	static Trajeto greenpath = new Trajeto("Verde");
 	static Trajeto redpath = new Trajeto("Vermelho");
@@ -17,10 +18,12 @@ public class Token {
 	public Token(String Cor){
 		this.cor = Cor;
 		this.position = 0;
+		this.inGame = true;
 	}
 	public Token(){
 		this.cor = "Preto";
 		this.position = -1;
+		this.inGame = false;
 	}
 	void move(int pos){
 		this.position += pos;
