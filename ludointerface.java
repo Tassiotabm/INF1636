@@ -22,11 +22,6 @@ import java.awt.Point;
 
 public class Ludointerface extends JFrame {
 
-	static int valor_dado = 0;
-	static int vez_do_jogador = 0;
-	static int index1 = 0;
-	static int index2 = 0;
-
 	public Ludointerface() {
 		initUI();
 	}
@@ -109,6 +104,7 @@ public class Ludointerface extends JFrame {
 			Token blue1 = new Token("Azul");
 			blue1.printToken(g);
 			
+			
 		}
 	}
 
@@ -163,8 +159,6 @@ public class Ludointerface extends JFrame {
 					    int y=e.getY();
 					    System.out.println("x = "+ x + " y = " + y);
 					    lf.clickToken(x, y);
-					    
-					    
 				    }
 				});
 				

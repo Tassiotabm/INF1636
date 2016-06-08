@@ -3,6 +3,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.geom.Ellipse2D;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
@@ -15,10 +16,12 @@ public class Token {
 	static Trajeto redpath = new Trajeto("Vermelho");
 	static Trajeto bluepath = new Trajeto("Azul");
 	static Trajeto yellowpath = new Trajeto("Amarelo");
+	static ArrayList<Token> inGameTokens = new ArrayList<Token>();
 	public Token(String Cor){
 		this.cor = Cor;
 		this.position = 0;
 		this.inGame = true;
+		inGameTokens.add(this);
 	}
 	public Token(){
 		this.cor = "Preto";
@@ -26,9 +29,16 @@ public class Token {
 		this.inGame = false;
 	}
 	void move(int pos){
+		/*
+		 *  Lançar um try-catch?
+		 */
 		this.position += pos;
 	}
-
+	void removeToken(){
+		this.inGame = false;
+		this.position = -1;
+		inGameTokens.remove(this);
+	}
 	public void printToken(Graphics G){
 		switch (this.cor){
 		case "Verde" :
