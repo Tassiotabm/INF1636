@@ -20,9 +20,16 @@ public class LudoFachada {
 	public void clickToken(int x, int y){
 		
 		Token toMove = mCheck.isAToken(x, y, inGameTokens);
-		if(toMove == null)
+		if(toMove == null){
+			System.out.println("toMove token is null");
 			return;
-		else
+		}
+		else{
+			System.out.println("toMove token is not null");
+			System.out.println("Dice number is " + dice.getNumber());
+			System.out.println("toMove Color is " + toMove.getColor());
+			System.out.println("toMove position is " + toMove.getPosition());
 			toMove.move(dice.getNumber());
 		}
+	}
 }

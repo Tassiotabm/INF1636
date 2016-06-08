@@ -28,16 +28,25 @@ public class Token {
 		this.position = -1;
 		this.inGame = false;
 	}
-	void move(int pos){
+	public void move(int pos){
 		/*
 		 *  Lançar um try-catch?
 		 */
-		this.position += pos;
+		System.out.println("Moving Token");
+		this.position = this.position + pos;
 	}
-	void removeToken(){
+	public void removeToken(){
 		this.inGame = false;
 		this.position = -1;
 		inGameTokens.remove(this);
+	}
+	
+	public String getColor(){
+		return this.cor;
+	}
+	
+	public int getPosition(){
+		return this.position;
 	}
 	public void printToken(Graphics G){
 		switch (this.cor){

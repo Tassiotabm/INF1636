@@ -94,7 +94,6 @@ public class Ludointerface extends JFrame {
 			redHome.print(g);
 			yellowHome.print(g);
 			blueHome.print(g);
-			
 			Token green1 = new Token("Verde");
 			green1.printToken(g);
 			Token red1 = new Token("Vermelho");
@@ -103,8 +102,7 @@ public class Ludointerface extends JFrame {
 			yellow1.printToken(g);
 			Token blue1 = new Token("Azul");
 			blue1.printToken(g);
-			
-			
+
 		}
 	}
 
@@ -116,6 +114,7 @@ public class Ludointerface extends JFrame {
 		ListaTrajetos.add(new Trajeto("Vermelho"));
 		ListaTrajetos.add(new Trajeto("Amarelo"));
 
+		
 		// criar tabuleiro
 		Tabuleiro tabuleiro = new Tabuleiro();
 		// caracteristicas do jframe
@@ -141,11 +140,11 @@ public class Ludointerface extends JFrame {
 									// botao
 
 		JLabel dadolabel = new JLabel();
+		LudoFachada lf= new LudoFachada();
 		buttDado.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				Dado dice = Dado.getDado();
-				LudoFachada lf= new LudoFachada();
 				lf.jogarDado();
 				ImageIcon dadoimg= dice.getImage();
 				
@@ -157,16 +156,18 @@ public class Ludointerface extends JFrame {
 				    public void mouseClicked(MouseEvent e) {
 						int x=e.getX();
 					    int y=e.getY();
-					    System.out.println("x = "+ x + " y = " + y);
 					    lf.clickToken(x, y);
+					    System.out.println("x = "+ x + " y = " + y);
+					 //   Component c = e.getComponent();
+					  //  System.out.println("Component é " + c.toString());      
 				    }
 				});
-				
 				revalidate();
 				repaint();
 			}
-
 		});
+
+		//System.out.println("Fora do button listener");
 		PainelDireito.add(buttDado);
 
 		// Adicionar o painel direito ao JFrame
