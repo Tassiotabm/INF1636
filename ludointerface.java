@@ -21,7 +21,22 @@ import javax.swing.BoxLayout;
 import java.awt.Point;
 
 public class Ludointerface extends JFrame {
-
+	
+	Token green1 = new Token("Verde");
+	Token red1 = new Token("Vermelho");
+	Token yellow1 = new Token("Amarelo");
+	Token blue1 = new Token("Azul");
+	
+	CasaFinal greenFinal = new CasaFinal("Verde");
+	CasaFinal redFinal = new CasaFinal("Vermelho");
+	CasaFinal yellowFinal = new CasaFinal("Amarelo");
+	CasaFinal blueFinal = new CasaFinal("Azul");
+	
+	QuadradoGrande GGREEN = new QuadradoGrande(0, 0, "Verde");
+	QuadradoGrande GRED = new QuadradoGrande(180, 0, "Vermelho");
+	QuadradoGrande GYELLOW = new QuadradoGrande(0, 180, "Amarelo");
+	QuadradoGrande GBLUE = new QuadradoGrande(180, 180, "Azul");
+	
 	public Ludointerface() {
 		initUI();
 	}
@@ -69,39 +84,25 @@ public class Ludointerface extends JFrame {
 					g.drawRect(j * 20, 120 + i * 20, 20, 20);
 				}
 			}
-
-			// pintar Gquadrado Green
-			QuadradoGrande GGREEN = new QuadradoGrande(0, 0, "Verde");
 			GGREEN.Print(g);
-			// pintar Gquadrado Red
-			QuadradoGrande GRED = new QuadradoGrande(180, 0, "Vermelho");
 			GRED.Print(g);
-			// pintar Gquadrado Yellow
-			QuadradoGrande GYELLOW = new QuadradoGrande(0, 180, "Amarelo");
 			GYELLOW.Print(g);
-			// pintar Gquadrado Blue
-			QuadradoGrande GBLUE = new QuadradoGrande(180, 180, "Azul");
 			GBLUE.Print(g);
 
-			// Casas de chegada
-			CasaFinal greenHome = new CasaFinal("Verde");
-			CasaFinal redHome = new CasaFinal("Vermelho");
-			CasaFinal yellowHome = new CasaFinal("Amarelo");
-			CasaFinal blueHome = new CasaFinal("Azul");
-
-			// print homes
-			greenHome.print(g);
-			redHome.print(g);
-			yellowHome.print(g);
-			blueHome.print(g);
-			Token green1 = new Token("Verde");
-			green1.printToken(g);
-			Token red1 = new Token("Vermelho");
-			red1.printToken(g);
-			Token yellow1 = new Token("Amarelo");
-			yellow1.printToken(g);
-			Token blue1 = new Token("Azul");
-			blue1.printToken(g);
+			greenFinal.print(g);
+			redFinal.print(g);
+			yellowFinal.print(g);
+			blueFinal.print(g);
+			
+			
+			green1.add(GGREEN);
+			red1.add(GRED);
+			yellow1.add(GYELLOW);
+			blue1.add(GBLUE);
+			
+			for(Token t:Token.inGameTokens){
+				t.printToken(g);
+			}
 
 		}
 	}
@@ -127,7 +128,7 @@ public class Ludointerface extends JFrame {
 
 		// Imprimir no ContentPane o tabuleiro
 		getContentPane().add(tabuleiro);
-
+		
 		// criar os boxlayout
 		BoxLayout BlocoPrincipal = new BoxLayout(getContentPane(), BoxLayout.LINE_AXIS);
 		BoxLayout SubBloco = new BoxLayout(PainelDireito, BoxLayout.Y_AXIS);
@@ -159,8 +160,11 @@ public class Ludointerface extends JFrame {
 					    lf.clickToken(x, y);
 					    System.out.println("x = "+ x + " y = " + y);
 					 //   Component c = e.getComponent();
-					  //  System.out.println("Component é " + c.toString());      
+					  //  System.out.println("Component é " + c.toString()); 
+						revalidate();
+						repaint();
 				    }
+				    
 				});
 				revalidate();
 				repaint();

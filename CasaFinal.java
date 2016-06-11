@@ -15,7 +15,7 @@ public class CasaFinal {
 		this.qtdToken = 0;
 	}
 	// Adicionar peça
-	public boolean addToken(){
+	public boolean add(){
 		if(qtdToken == 4){ // limite de peças na casa final
 			System.out.println("Casa Final cheia, nao ha como adicionar mais tokens");
 			return false;

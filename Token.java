@@ -19,9 +19,9 @@ public class Token {
 	static ArrayList<Token> inGameTokens = new ArrayList<Token>();
 	public Token(String Cor){
 		this.cor = Cor;
-		this.position = 0;
-		this.inGame = true;
-		inGameTokens.add(this);
+		this.position = -1;
+		this.inGame = false;
+		//switch
 	}
 	public Token(){
 		this.cor = "Preto";
@@ -35,10 +35,42 @@ public class Token {
 		System.out.println("Moving Token");
 		this.position = this.position + pos;
 	}
-	public void removeToken(){
+	public void add(QuadradoGrande tokenHome){
+		if(this.inGame == false)
+			this.inGame = true;
+		this.position = 0;
+		inGameTokens.add(this);
+		tokenHome.remove();
+		switch(this.cor){
+		case "Verde": Jogador.greenPlayerTokens.add(this); break;
+		case "Vermelho": Jogador.redPlayerTokens.add(this); break;
+		case "Amarelo": Jogador.yellowPlayerTokens.add(this); break;
+		case "Azul": Jogador.bluePlayerTokens.add(this); break;
+		}
+	}
+	public void remove(QuadradoGrande tokenHome){
 		this.inGame = false;
 		this.position = -1;
 		inGameTokens.remove(this);
+		tokenHome.add();
+		switch(this.cor){
+		case "Verde":Jogador.greenPlayerTokens.remove(this); break;
+		case "Vermelho":Jogador.redPlayerTokens.remove(this); break;
+		case "Amarelo":Jogador.yellowPlayerTokens.remove(this); break;
+		case "Azul":Jogador.bluePlayerTokens.remove(this); break;
+		}
+	}
+	public void remove(	CasaFinal tokenFinal){
+		this.inGame = false;
+		this.position = -1;
+		inGameTokens.remove(this);
+		tokenFinal.add();
+		switch(this.cor){
+		case "Verde":Jogador.greenPlayerTokens.remove(this); break;
+		case "Vermelho":Jogador.redPlayerTokens.remove(this); break;
+		case "Amarelo":Jogador.yellowPlayerTokens.remove(this); break;
+		case "Azul":Jogador.bluePlayerTokens.remove(this); break;
+		}
 	}
 	
 	public String getColor(){

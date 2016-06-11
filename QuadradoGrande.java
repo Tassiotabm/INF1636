@@ -17,10 +17,10 @@ public class QuadradoGrande {
 		Cor = cor;
 		QntPecas = 4;
 	}
-	public void RemovePeca(){
+	public void remove(){
 		QntPecas--;
 	}
-	public void AdicionarPeca(){
+	public void add(){
 		QntPecas++;
 	}
 	public void Print(Graphics G)
