@@ -27,15 +27,9 @@ public class Ludointerface extends JFrame {
 	Token yellow1 = new Token("Amarelo");
 	Token blue1 = new Token("Azul");
 	
-	CasaFinal greenFinal = new CasaFinal("Verde");
-	CasaFinal redFinal = new CasaFinal("Vermelho");
-	CasaFinal yellowFinal = new CasaFinal("Amarelo");
-	CasaFinal blueFinal = new CasaFinal("Azul");
+	CasaFinal finalHome = new CasaFinal();
 	
-	QuadradoGrande GGREEN = new QuadradoGrande(0, 0, "Verde");
-	QuadradoGrande GRED = new QuadradoGrande(180, 0, "Vermelho");
-	QuadradoGrande GYELLOW = new QuadradoGrande(0, 180, "Amarelo");
-	QuadradoGrande GBLUE = new QuadradoGrande(180, 180, "Azul");
+	QuadradoGrande initialHome = new QuadradoGrande();
 	
 	public Ludointerface() {
 		initUI();
@@ -84,24 +78,16 @@ public class Ludointerface extends JFrame {
 					g.drawRect(j * 20, 120 + i * 20, 20, 20);
 				}
 			}
-			GGREEN.Print(g);
-			GRED.Print(g);
-			GYELLOW.Print(g);
-			GBLUE.Print(g);
+			
+			initialHome.Print(g);
 
-			greenFinal.print(g);
-			redFinal.print(g);
-			yellowFinal.print(g);
-			blueFinal.print(g);
+			finalHome.print(g);
 			
 			
-			green1.add(GGREEN);
-			red1.add(GRED);
-			yellow1.add(GYELLOW);
-			blue1.add(GBLUE);
-			
-			for(Token t:Token.inGameTokens){
+			for(Token t:Token.gameTokens){
+				if(t.inGame){
 				t.printToken(g);
+				}
 			}
 
 		}

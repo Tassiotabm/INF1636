@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
-public class Token {
+public class Token implements Subject{
 	private String cor;
 	private int position;
 	public boolean inGame;
@@ -16,12 +16,14 @@ public class Token {
 	static Trajeto redpath = new Trajeto("Vermelho");
 	static Trajeto bluepath = new Trajeto("Azul");
 	static Trajeto yellowpath = new Trajeto("Amarelo");
-	static ArrayList<Token> inGameTokens = new ArrayList<Token>();
+	static ArrayList<Token> gameTokens = new ArrayList<Token>();
+	private ArrayList<Observer> observers = new ArrayList<Observer>();
 	public Token(String Cor){
 		this.cor = Cor;
-		this.position = -1;
-		this.inGame = false;
-		//switch
+		this.position = 0;
+		this.inGame = true;
+		gameTokens.add(this);
+		notifyAllObservers();
 	}
 	public Token(){
 		this.cor = "Preto";
@@ -29,48 +31,24 @@ public class Token {
 		this.inGame = false;
 	}
 	public void move(int pos){
-		/*
-		 *  Lançar um try-catch?
-		 */
+		
 		System.out.println("Moving Token");
 		this.position = this.position + pos;
+		notifyAllObservers();
 	}
-	public void add(QuadradoGrande tokenHome){
+	public void add(){
 		if(this.inGame == false)
 			this.inGame = true;
 		this.position = 0;
-		inGameTokens.add(this);
-		tokenHome.remove();
-		switch(this.cor){
-		case "Verde": Jogador.greenPlayerTokens.add(this); break;
-		case "Vermelho": Jogador.redPlayerTokens.add(this); break;
-		case "Amarelo": Jogador.yellowPlayerTokens.add(this); break;
-		case "Azul": Jogador.bluePlayerTokens.add(this); break;
-		}
+		
+		notifyAllObservers();
 	}
-	public void remove(QuadradoGrande tokenHome){
+	public void remove(){
 		this.inGame = false;
-		this.position = -1;
-		inGameTokens.remove(this);
-		tokenHome.add();
-		switch(this.cor){
-		case "Verde":Jogador.greenPlayerTokens.remove(this); break;
-		case "Vermelho":Jogador.redPlayerTokens.remove(this); break;
-		case "Amarelo":Jogador.yellowPlayerTokens.remove(this); break;
-		case "Azul":Jogador.bluePlayerTokens.remove(this); break;
+		if(this.position != 58){
+			this.position = -1;
 		}
-	}
-	public void remove(	CasaFinal tokenFinal){
-		this.inGame = false;
-		this.position = -1;
-		inGameTokens.remove(this);
-		tokenFinal.add();
-		switch(this.cor){
-		case "Verde":Jogador.greenPlayerTokens.remove(this); break;
-		case "Vermelho":Jogador.redPlayerTokens.remove(this); break;
-		case "Amarelo":Jogador.yellowPlayerTokens.remove(this); break;
-		case "Azul":Jogador.bluePlayerTokens.remove(this); break;
-		}
+		notifyAllObservers();
 	}
 	
 	public String getColor(){
@@ -125,5 +103,17 @@ public class Token {
 			
 			default: ;
 		}
+	}
+	@Override
+	public void attach(Observer observer) {
+		this.observers.add(observer);
+		
+	}
+	@Override
+	public void notifyAllObservers() {
+		for(Observer o:observers){
+			o.update();
+		}
+		
 	}
 }

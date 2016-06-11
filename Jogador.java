@@ -1,13 +1,19 @@
 import java.util.ArrayList;
 
-public class Jogador {
+public class Jogador extends Observer {
 	private String cor;
-	static ArrayList<Token> greenPlayerTokens = new ArrayList<Token>();
-	static ArrayList<Token> redPlayerTokens =  new ArrayList<Token>();
-	static ArrayList<Token> yellowPlayerTokens =  new ArrayList<Token>();
-	static ArrayList<Token> bluePlayerTokens =  new ArrayList<Token>();
+	public ArrayList<Token> playerTokens = new ArrayList<Token>();
 	public Jogador(String cor){
 		this.cor = cor;
+	}
+	
+	@Override
+	public void update() {
+		for(Token t: Token.gameTokens){
+			if(t.getColor() == this.cor && !playerTokens.contains(t)){
+				playerTokens.add(t);
+			}
+		}
 	}
 	
 

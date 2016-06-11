@@ -6,11 +6,11 @@ import java.awt.Point;
 public class LudoFachada {
 	
 	private Dado 	dice= null;
-	private ArrayList<Token> inGameTokens = null;
+	private ArrayList<Token> gameTokens = null;
 	MovementCheck mCheck = null;
 	public LudoFachada(){
 		dice = Dado.getDado();
-		inGameTokens = Token.inGameTokens;
+		gameTokens = Token.gameTokens;
 		mCheck = new MovementCheck();
 	}
 	public void jogarDado(){
@@ -19,7 +19,7 @@ public class LudoFachada {
 	}
 	public void clickToken(int x, int y){
 		
-		Token toMove = mCheck.isAToken(x, y, inGameTokens);
+		Token toMove = mCheck.isAToken(x, y, gameTokens);
 		if(toMove == null){
 			System.out.println("toMove token is null");
 			return;

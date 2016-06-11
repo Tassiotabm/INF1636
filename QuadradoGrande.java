@@ -3,108 +3,136 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 
-public class QuadradoGrande {
+public class QuadradoGrande extends Observer {
 
-	private int x;
-	private int y;
 	private String Cor;
-	private int QntPecas;
+	private int greenTokens;
+	private int redTokens;
+	private int yellowTokens;
+	private int blueTokens;
 	
-	public QuadradoGrande(int x1,int y1,String cor)
+	public QuadradoGrande()
 	{
-		x = x1;
-		y = y1;
-		Cor = cor;
-		QntPecas = 4;
+		greenTokens = 3;
+		redTokens = 3;
+		yellowTokens = 3;
+		blueTokens = 3;
 	}
-	public void remove(){
-		QntPecas--;
+	public void remove(String cor){
+		switch(cor){
+		case "Verde": greenTokens--; break;
+		case "Vermelho": redTokens--; break;
+		case "Amarelo": yellowTokens--; break;
+		case "Azul": blueTokens--; break;
+		}
 	}
-	public void add(){
-		QntPecas++;
+	public void add(String cor){
+		switch(cor){
+		case "Verde": greenTokens++; break;
+		case "Vermelho": redTokens++; break;
+		case "Amarelo": yellowTokens++; break;
+		case "Azul": blueTokens++; break;
+		}
+	}
+	public int getTokens(String cor){
+		switch(cor){
+		case "Verde": return greenTokens;
+		case "Vermelho": return redTokens;
+		case "Amarelo": return yellowTokens;
+		case "Azul": return blueTokens;
+		}
+		return -1;
 	}
 	public void Print(Graphics G)
 	{
 		Graphics2D g = (Graphics2D) G;
-		if(Cor == "Vermelho"){
 			g.setPaint(Color.red);
-			Rectangle2D g2 =new Rectangle2D.Double(x,y,120,120);				
-			g.fill(g2);
+			Rectangle2D g1 =new Rectangle2D.Double(180,0,120,120);				
+			g.fill(g1);
 			G.setColor(Color.black);
-			if(QntPecas>0){
+			if(redTokens>0){
 				Circulos Red1Big = new Circulos(195,15,g,"Vermelho");
-				Circulos Red1Small = new Circulos(198,18,g,"Preto");}
-			if(QntPecas>1){
+				Circulos Red1Small = new Circulos(198,18,g,"Preto");
+				}
+			if(redTokens>1){
 				Circulos Red2Big = new Circulos(255,15,g,"Vermelho");
-				Circulos Red2Small = new Circulos(258,18,g,"Preto");}
-			if(QntPecas>2){
+				Circulos Red2Small = new Circulos(258,18,g,"Preto");
+				}
+			if(redTokens>2){
 				Circulos Red3Big = new Circulos(195,75,g,"Vermelho");
-				Circulos Red3Small = new Circulos(198,78,g,"Preto");}
-			if(QntPecas>3){
+				Circulos Red3Small = new Circulos(198,78,g,"Preto");
+				}
+			if(redTokens>3){
 				Circulos Red4Big = new Circulos(255,75,g,"Vermelho");
-				Circulos Red4Small = new Circulos(258,78,g,"Preto");}
-			}
-		else if(Cor == "Amarelo"){
+				Circulos Red4Small = new Circulos(258,78,g,"Preto");
+				}
+			G.drawRect(180,0,120,120);
+			
 			g.setPaint(Color.yellow);
-			Rectangle2D g2 =new Rectangle2D.Double(x,y,120,120);				
+			Rectangle2D g2 =new Rectangle2D.Double(0,180,120,120);				
 			g.fill(g2);
 			G.setColor(Color.black);
-			if(QntPecas>0){
+			if(yellowTokens>0){
 				Circulos Yellow1Big = new Circulos(15,195,g,"Amarelo");
 				Circulos Yellow1Small = new Circulos(18,198,g,"Preto");}
-			if(QntPecas>1){
+			if(yellowTokens>1){
 				Circulos Yellow2Big = new Circulos(75,195,g,"Amarelo");
 				Circulos Yellow2Small = new Circulos(78,198,g,"Preto");}
-			if(QntPecas>2){
+			if(yellowTokens>2){
 				Circulos Yellow3Big = new Circulos(15,255,g,"Amarelo");
 				Circulos Yellow3Small = new Circulos(18,258,g,"Preto");}
-			if(QntPecas>3){
+			if(yellowTokens>3){
 				Circulos Yellow4Big = new Circulos(75,255,g,"Amarelo");
-				Circulos Yellow4Small = new Circulos(78,258,g,"Preto");}
-			}
-		else if(Cor == "Azul"){
+				Circulos Yellow4Small = new Circulos(78,258,g,"Preto");
+				}
+			G.drawRect(0,180,120,120);
+			
 			g.setPaint(Color.blue);
-			Rectangle2D g2 =new Rectangle2D.Double(x,y,120,120);				
-			g.fill(g2);
+			Rectangle2D g3 =new Rectangle2D.Double(180,180,120,120);				
+			g.fill(g3);
 			G.setColor(Color.black);
-			if(QntPecas>0){
+			if(blueTokens>0){
 				Circulos Blue1Big = new Circulos(195,195,g,"Azul");
 				Circulos Blue1Small = new Circulos(198,198,g,"Preto");
 			}
-			if(QntPecas>1){
+			if(blueTokens>1){
 				Circulos Blue2Big = new Circulos(255,195,g,"Azul");
 				Circulos Blue2Small = new Circulos(258,198,g,"Preto");
 			}
-			if(QntPecas>2){
+			if(blueTokens>2){
 				Circulos Blue3Big = new Circulos(195,255,g,"Azul");
 				Circulos Blue3Small = new Circulos(198,258,g,"Preto");
 			}
-			if(QntPecas>3){
+			if(blueTokens>3){
 				Circulos Blue4Big = new Circulos(255,255,g,"Azul");
 				Circulos Blue4Small = new Circulos(258,258,g,"Preto");}
-			}
-		else if(Cor == "Verde"){ //verde
+			G.drawRect(180,180,120,120);
+			
 			g.setPaint(Color.green);
-			Rectangle2D g2 =new Rectangle2D.Double(x,y,120,120);				
-			g.fill(g2);
+			Rectangle2D g4 =new Rectangle2D.Double(0,0,120,120);				
+			g.fill(g4);
 			G.setColor(Color.black);
-			if(QntPecas>0){
+			if(greenTokens>0){
 				Circulos Green1Big = new Circulos(15,15,g,"Verde");
 				Circulos Green1Small = new Circulos(18,18,g,"Preto");
 			}
-			if(QntPecas>1){
+			if(greenTokens>1){
 				Circulos Green2Big = new Circulos(75,15,g,"Verde");
 				Circulos Green2Small = new Circulos(78,18,g,"Preto");
 			}
-			if(QntPecas>2){
+			if(greenTokens>2){
 				Circulos Green3Big = new Circulos(15,75,g,"Verde");
 				Circulos Green3Small = new Circulos(18,78,g,"Preto");
 			}
-			if(QntPecas>3){
+			if(greenTokens>3){
 				Circulos Green4Big = new Circulos(75,75,g,"Verde");
 				Circulos Green4Small = new Circulos(78,78,g,"Preto");
 			}
-		}
-		G.drawRect(x,y,120,120);
+			G.drawRect(0,0,120,120);
+	}
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
 	}
 }
