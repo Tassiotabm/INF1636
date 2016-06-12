@@ -206,10 +206,10 @@ public class CasaFinal extends Observer {
 		for(Token t : Token.gameTokens){
 			if(t.getPosition() == 58){
 				switch(t.getColor()){
-				case "Verde" : greenCount++;
-				case "Vermelho" : redCount++;
-				case "Amarelo" : yellowCount++;
-				case "Azul" : blueCount++;
+				case "Verde" : greenCount++; break;
+				case "Vermelho" : redCount++; break;
+				case "Amarelo" : yellowCount++; break;
+				case "Azul" : blueCount++; break;
 				}
 			}
 		}

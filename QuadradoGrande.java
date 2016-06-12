@@ -36,10 +36,10 @@ public class QuadradoGrande extends Observer {
 	}
 	public int getTokens(String cor){
 		switch(cor){
-		case "Verde": return greenTokens;
-		case "Vermelho": return redTokens;
-		case "Amarelo": return yellowTokens;
-		case "Azul": return blueTokens;
+		case "Verde": return greenTokens; 
+		case "Vermelho": return redTokens; 
+		case "Amarelo": return yellowTokens; 
+		case "Azul": return blueTokens; 
 		}
 		return -1;
 	}
@@ -134,7 +134,7 @@ public class QuadradoGrande extends Observer {
 	public void update() {
 		int greenCount = 4;
 		int redCount = 4;
-		int yellowCount = 4;
+		int yellowCount =4;
 		int blueCount = 4;
 		for(Token t : Token.gameTokens){
 			if(t.inGame){

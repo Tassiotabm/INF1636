@@ -120,9 +120,9 @@ public class Ludointerface extends JFrame {
 		}
 		
 		greenList.get(0).attach(green);
-		greenList.get(0).attach(red);
-		greenList.get(0).attach(blue);
-		greenList.get(0).attach(yellow);
+		redList.get(0).attach(red);
+		blueList.get(0).attach(blue);
+		yellowList.get(0).attach(yellow);
 		
 		greenList.get(0).attach(finalHome);
 		greenList.get(0).attach(initialHome);
@@ -170,65 +170,67 @@ public class Ludointerface extends JFrame {
 			public void actionPerformed(ActionEvent event) {
 				Dado dice = Dado.getDado();
 				lf.jogarDado();
-				ImageIcon dadoimg= dice.getImage();
-				
+				ImageIcon dadoimg = dice.getImage();
+
 				dadolabel.setIcon(dadoimg);
 				PainelDireito.add(dadolabel);
 				buttDado.setEnabled(false);
 				Jogador j = Jogador.playerTurn();
-				if(dice.getNumber() == 5 && regrasdojogo.isHouseFree(j.getColor())){
+				if (dice.getNumber() == 5 && regrasdojogo.isHouseFree(j.getColor())) {
 					buttInsereToken.setEnabled(true);
-					buttInsereToken.addActionListener(new ActionListener(){
+					buttInsereToken.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent event) {
 							Jogador j = Jogador.playerTurn();
 							buttInsereToken.setEnabled(false);
-							switch(j.getColor()){
-							case "Verde" : greenList.add(new Token("Verde")); greenList.get(greenList.size()-1).add();break;
-							case "Vermelho" : redList.add(new Token("Vermelho"));redList.get(redList.size()-1).add(); break;
-							case "Azul" : blueList.add(new Token("Azul"));blueList.get(blueList.size()-1).add(); break;
-							case "Amarelo" : yellowList.add(new Token("Amarelo"));yellowList.get(yellowList.size()-1).add(); break;
+							for(Token t: Token.gameTokens){
+								if(!t.inGame && t.getColor() == j.getColor())
+								{
+									t.add();
+									break;
+								}
 							}
 							buttDado.setEnabled(true);
 							j.changeTurn();
+							buttDado.setBackground(Jogador.getColorAtual());
+							buttDado.setForeground(Color.black);
 							revalidate();
 							repaint();
 						}
 					});
-				}
-				else
-				{
-				tabuleiro.addMouseListener(new mouseHandler() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						buttInsereToken.setEnabled(false);
-						if (!buttDado.isEnabled()) {
-							int x = e.getX();
-							int y = e.getY();
-							if (lf.clickToken(x, y)) {
-								buttDado.setEnabled(true);
-								if(dice.getNumber() != 6){
-									Jogador j = Jogador.playerTurn();
-									j.changeTurn();
+				} else {
+					tabuleiro.addMouseListener(new mouseHandler() {
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							buttInsereToken.setEnabled(false);
+							if (!buttDado.isEnabled()) {
+								int x = e.getX();
+								int y = e.getY();
+								if (lf.clickToken(x, y)) {
+									buttDado.setEnabled(true);
+									if (dice.getNumber() != 6) {
+										Jogador j = Jogador.playerTurn();
+										j.changeTurn();
+									}
 								}
+								System.out.println("x = " + x + " y = " + y);
 							}
-							System.out.println("x = " + x + " y = " + y);
+							// Component c = e.getComponent();
+							// System.out.println("Component é " +
+							// c.toString());
+							buttDado.setBackground(Jogador.getColorAtual());
+							buttDado.setForeground(Color.black);
+							revalidate();
+							repaint();
 						}
-						// Component c = e.getComponent();
-						// System.out.println("Component é " + c.toString());
-						buttDado.setBackground(Jogador.getColorAtual());
-						  buttDado.setForeground(Color.black);
-						revalidate();
-						repaint();
-					}
 
-				});
-				revalidate();
-				repaint();
+					});
+					revalidate();
+					repaint();
 				}
 			}
 		});
 
-		//System.out.println("Fora do button listener");
+		// System.out.println("Fora do button listener");
 		PainelDireito.add(buttDado);
 
 		// Adicionar o painel direito ao JFrame
@@ -238,7 +240,8 @@ public class Ludointerface extends JFrame {
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
-	public class mouseHandler implements MouseListener{
+
+	public class mouseHandler implements MouseListener {
 
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
@@ -248,27 +251,27 @@ public class Ludointerface extends JFrame {
 		@Override
 		public void mouseEntered(MouseEvent arg0) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
 		@Override
 		public void mouseExited(MouseEvent arg0) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
 		@Override
 		public void mousePressed(MouseEvent arg0) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
 		@Override
 		public void mouseReleased(MouseEvent arg0) {
 			// TODO Auto-generated method stub
-			
+
 		}
-		
+
 	}
 
 }

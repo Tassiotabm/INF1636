@@ -26,8 +26,8 @@ public class Dado{
 	public void _throw()
 	{
 		Random r = new Random();
-		this.number = Math.abs((r.nextInt()%6)) + 1;
-		//this.number = 6;
+		//this.number = Math.abs((r.nextInt()%6)) + 1;
+		this.number = 5;
 	}
 	public int getNumber(){
 		return this.number;
