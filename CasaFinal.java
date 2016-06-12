@@ -11,6 +11,7 @@ public class CasaFinal extends Observer {
 	private static int redTokens;
 	private static int yellowTokens;
 	private static int blueTokens;
+	
 
 	// Construtor
 	public CasaFinal() {

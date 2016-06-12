@@ -17,11 +17,11 @@ public class Token implements Subject{
 	static Trajeto bluepath = new Trajeto("Azul");
 	static Trajeto yellowpath = new Trajeto("Amarelo");
 	static ArrayList<Token> gameTokens = new ArrayList<Token>();
-	private ArrayList<Observer> observers = new ArrayList<Observer>();
+	private static ArrayList<Observer> observers = new ArrayList<Observer>();
 	public Token(String Cor){
 		this.cor = Cor;
-		this.position = 0;
-		this.inGame = true;
+		this.position = -1;
+		this.inGame = false;
 		gameTokens.add(this);
 		notifyAllObservers();
 	}
@@ -35,9 +35,17 @@ public class Token implements Subject{
 		System.out.println("Moving Token");
 		if(regrasdojogo.isPlayerColor(this.cor))
 		{
-			this.position = this.position + pos;
+			if(pos == 6){
+			this.position = this.position + pos + 1;
 			notifyAllObservers();
 			return true;
+			}
+			else
+			{
+				this.position = this.position + pos ;
+				notifyAllObservers();
+				return true;
+			}
 		}
 		return false;
 	}	
@@ -111,7 +119,7 @@ public class Token implements Subject{
 	}
 	@Override
 	public void attach(Observer observer) {
-		this.observers.add(observer);
+		Token.observers.add(observer);
 		
 	}
 	@Override

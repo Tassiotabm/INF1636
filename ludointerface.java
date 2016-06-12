@@ -39,6 +39,7 @@ public class Ludointerface extends JFrame {
 	
 	QuadradoGrande initialHome = new QuadradoGrande();
 	
+	
 	public Ludointerface() {
 		initUI();
 	}
@@ -108,11 +109,29 @@ public class Ludointerface extends JFrame {
 		ListaTrajetos.add(new Trajeto("Azul"));
 		ListaTrajetos.add(new Trajeto("Vermelho"));
 		ListaTrajetos.add(new Trajeto("Amarelo"));
+		
 		green.setTurn(true);
-		greenList.add(new Token("Verde"));
-		redList.add(new Token("Vermelho"));
-		blueList.add(new Token("Azul"));
-		yellowList.add(new Token("Amarelo"));
+		for(int i = 0; i < 4; i ++)
+		{
+			greenList.add(new Token("Verde"));
+			redList.add(new Token("Vermelho"));
+			blueList.add(new Token("Azul"));
+			yellowList.add(new Token("Amarelo"));
+		}
+		
+		greenList.get(0).attach(green);
+		greenList.get(0).attach(red);
+		greenList.get(0).attach(blue);
+		greenList.get(0).attach(yellow);
+		
+		greenList.get(0).attach(finalHome);
+		greenList.get(0).attach(initialHome);
+		
+		greenList.get(0).add();
+		redList.get(0).add();
+		blueList.get(0).add();
+		yellowList.get(0).add();
+		
 		// criar tabuleiro
 		Tabuleiro tabuleiro = new Tabuleiro();
 		// caracteristicas do jframe
@@ -142,6 +161,10 @@ public class Ludointerface extends JFrame {
 		LudoFachada lf= new LudoFachada();
 		PainelDireito.add(buttInsereToken);
 		buttInsereToken.setEnabled(false);
+		
+		buttDado.setBackground(Jogador.getColorAtual());
+		  buttDado.setForeground(Color.black);
+		  
 		buttDado.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
@@ -160,10 +183,10 @@ public class Ludointerface extends JFrame {
 							Jogador j = Jogador.playerTurn();
 							buttInsereToken.setEnabled(false);
 							switch(j.getColor()){
-							case "Verde" : greenList.add(new Token("Verde")); break;
-							case "Vermelho" : redList.add(new Token("Vermelho")); break;
-							case "Azul" : blueList.add(new Token("Azul")); break;
-							case "Amarelo" : yellowList.add(new Token("Amarelo")); break;
+							case "Verde" : greenList.add(new Token("Verde")); greenList.get(greenList.size()-1).add();break;
+							case "Vermelho" : redList.add(new Token("Vermelho"));redList.get(redList.size()-1).add(); break;
+							case "Azul" : blueList.add(new Token("Azul"));blueList.get(blueList.size()-1).add(); break;
+							case "Amarelo" : yellowList.add(new Token("Amarelo"));yellowList.get(yellowList.size()-1).add(); break;
 							}
 							buttDado.setEnabled(true);
 							j.changeTurn();
@@ -192,6 +215,8 @@ public class Ludointerface extends JFrame {
 						}
 						// Component c = e.getComponent();
 						// System.out.println("Component é " + c.toString());
+						buttDado.setBackground(Jogador.getColorAtual());
+						  buttDado.setForeground(Color.black);
 						revalidate();
 						repaint();
 					}

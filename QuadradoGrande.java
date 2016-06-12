@@ -132,20 +132,24 @@ public class QuadradoGrande extends Observer {
 	}
 	@Override
 	public void update() {
-		int greenCount = 0;
-		int redCount = 0;
-		int yellowCount = 0;
-		int blueCount = 0;
+		int greenCount = 4;
+		int redCount = 4;
+		int yellowCount = 4;
+		int blueCount = 4;
 		for(Token t : Token.gameTokens){
-			if(t.getPosition() == -1){
+			if(t.inGame){
 				switch(t.getColor()){
-				case "Verde" : greenCount++;
-				case "Vermelho" : redCount++;
-				case "Amarelo" : yellowCount++;
-				case "Azul" : blueCount++;
+				case "Verde" : greenCount--; break;
+				case "Vermelho" : redCount--; break;
+				case "Amarelo" : yellowCount--; break;
+				case "Azul" : blueCount--; break;
 				}
 			}
 		}
+		System.out.println("g = " +  greenCount);
+		System.out.println("r = " +  redCount);
+		System.out.println("y = " +  yellowCount);
+		System.out.println("b = " +  blueCount);
 		this.greenTokens = greenCount;
 		this.redTokens = redCount;
 		this.yellowTokens = yellowCount;

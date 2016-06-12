@@ -1,4 +1,7 @@
+import java.awt.Color;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import javax.swing.text.html.StyleSheet;
 
 public class Jogador extends Observer {
 	private String cor;
@@ -34,13 +37,39 @@ public class Jogador extends Observer {
 		}
 		return null;
 	}
-	
-	public String getColor(){
+
+	public String getColor() {
 		return this.cor;
 	}
+
+	static Color getColorAtual() {
+		for (Jogador j : players) {
+			if (j.turn == true) {
+				Color color;
+				String Temp = j.getColor();
+				if (Temp == "Verde")
+					Temp = "green";
+				if (Temp == "Vermelho")
+					Temp = "red";
+				if (Temp == "Amarelo")
+					Temp = "yellow";
+				if (Temp == "Azul")
+					Temp = "blue";
+				try {
+					Field field = Class.forName("java.awt.Color").getField(Temp);
+					color = (Color) field.get(null);
+				} catch (Exception e) {
+					color = null; // Not defined
+				}
+				return color;
+			}
+		}
+		return Color.BLACK;
+	}
+
 	@Override
 	public void update() {
-		for(Token t: Token.gameTokens){
+		for (Token t: Token.gameTokens){
 			if(t.getColor() == this.cor && !playerTokens.contains(t)){
 				playerTokens.add(t);
 			}
