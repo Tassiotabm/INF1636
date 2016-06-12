@@ -2,11 +2,42 @@ import java.util.ArrayList;
 
 public class Jogador extends Observer {
 	private String cor;
+	private boolean turn;
+	static ArrayList<Jogador> players = new ArrayList<Jogador>();
 	public ArrayList<Token> playerTokens = new ArrayList<Token>();
 	public Jogador(String cor){
 		this.cor = cor;
+		players.add(this);
+		this.turn = false;
 	}
 	
+	public void changeTurn(){
+		int index = players.indexOf(this);
+		int nextIndex;
+		if(index == 3)
+			nextIndex = 0;
+		else 
+			nextIndex = index+1;
+		players.get(index).turn = false;
+		players.get(nextIndex).turn = true;	
+	}
+	public boolean getTurn(){
+		return this.turn;
+	}
+	public void setTurn(boolean a){
+		this.turn = a;
+	}
+	static Jogador playerTurn(){
+		for(Jogador j: players){
+			if(j.turn == true)
+				return j;
+		}
+		return null;
+	}
+	
+	public String getColor(){
+		return this.cor;
+	}
 	@Override
 	public void update() {
 		for(Token t: Token.gameTokens){
@@ -15,6 +46,4 @@ public class Jogador extends Observer {
 			}
 		}
 	}
-	
-
 }

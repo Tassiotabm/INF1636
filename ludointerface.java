@@ -22,10 +22,18 @@ import java.awt.Point;
 
 public class Ludointerface extends JFrame {
 	
-	Token green1 = new Token("Verde");
-	Token red1 = new Token("Vermelho");
-	Token yellow1 = new Token("Amarelo");
-	Token blue1 = new Token("Azul");
+
+	ArrayList<Token> greenList = new ArrayList<Token>();
+	ArrayList<Token> redList = new ArrayList<Token>();
+	ArrayList<Token> blueList = new ArrayList<Token>();
+	ArrayList<Token> yellowList = new ArrayList<Token>();
+
+	
+	Jogador green = new Jogador("Verde");
+	Jogador red = new Jogador("Vermelho");
+	Jogador blue = new Jogador("Azul");
+	Jogador yellow = new Jogador("Amarelo");
+
 	
 	CasaFinal finalHome = new CasaFinal();
 	
@@ -100,8 +108,11 @@ public class Ludointerface extends JFrame {
 		ListaTrajetos.add(new Trajeto("Azul"));
 		ListaTrajetos.add(new Trajeto("Vermelho"));
 		ListaTrajetos.add(new Trajeto("Amarelo"));
-
-		
+		green.setTurn(true);
+		greenList.add(new Token("Verde"));
+		redList.add(new Token("Vermelho"));
+		blueList.add(new Token("Azul"));
+		yellowList.add(new Token("Amarelo"));
 		// criar tabuleiro
 		Tabuleiro tabuleiro = new Tabuleiro();
 		// caracteristicas do jframe
@@ -111,6 +122,7 @@ public class Ludointerface extends JFrame {
 		JPanel PainelDireito = new JPanel();
 
 		JButton buttDado = new JButton("Jogar Dado");
+		JButton buttInsereToken = new JButton("Inserir Peça");
 
 		// Imprimir no ContentPane o tabuleiro
 		getContentPane().add(tabuleiro);
@@ -128,6 +140,8 @@ public class Ludointerface extends JFrame {
 
 		JLabel dadolabel = new JLabel();
 		LudoFachada lf= new LudoFachada();
+		PainelDireito.add(buttInsereToken);
+		buttInsereToken.setEnabled(false);
 		buttDado.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
@@ -137,23 +151,55 @@ public class Ludointerface extends JFrame {
 				
 				dadolabel.setIcon(dadoimg);
 				PainelDireito.add(dadolabel);
-				
+				buttDado.setEnabled(false);
+				Jogador j = Jogador.playerTurn();
+				if(dice.getNumber() == 5 && regrasdojogo.isHouseFree(j.getColor())){
+					buttInsereToken.setEnabled(true);
+					buttInsereToken.addActionListener(new ActionListener(){
+						public void actionPerformed(ActionEvent event) {
+							Jogador j = Jogador.playerTurn();
+							buttInsereToken.setEnabled(false);
+							switch(j.getColor()){
+							case "Verde" : greenList.add(new Token("Verde")); break;
+							case "Vermelho" : redList.add(new Token("Vermelho")); break;
+							case "Azul" : blueList.add(new Token("Azul")); break;
+							case "Amarelo" : yellowList.add(new Token("Amarelo")); break;
+							}
+							buttDado.setEnabled(true);
+							j.changeTurn();
+							revalidate();
+							repaint();
+						}
+					});
+				}
+				else
+				{
 				tabuleiro.addMouseListener(new mouseHandler() {
-				    @Override
-				    public void mouseClicked(MouseEvent e) {
-						int x=e.getX();
-					    int y=e.getY();
-					    lf.clickToken(x, y);
-					    System.out.println("x = "+ x + " y = " + y);
-					 //   Component c = e.getComponent();
-					  //  System.out.println("Component é " + c.toString()); 
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						buttInsereToken.setEnabled(false);
+						if (!buttDado.isEnabled()) {
+							int x = e.getX();
+							int y = e.getY();
+							if (lf.clickToken(x, y)) {
+								buttDado.setEnabled(true);
+								if(dice.getNumber() != 6){
+									Jogador j = Jogador.playerTurn();
+									j.changeTurn();
+								}
+							}
+							System.out.println("x = " + x + " y = " + y);
+						}
+						// Component c = e.getComponent();
+						// System.out.println("Component é " + c.toString());
 						revalidate();
 						repaint();
-				    }
-				    
+					}
+
 				});
 				revalidate();
 				repaint();
+				}
 			}
 		});
 

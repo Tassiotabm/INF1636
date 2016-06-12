@@ -17,19 +17,19 @@ public class LudoFachada {
 
 		this.dice._throw();
 	}
-	public void clickToken(int x, int y){
+	public boolean clickToken(int x, int y){
 		
 		Token toMove = mCheck.isAToken(x, y, gameTokens);
 		if(toMove == null){
 			System.out.println("toMove token is null");
-			return;
+			return false;
 		}
 		else{
 			System.out.println("toMove token is not null");
 			System.out.println("Dice number is " + dice.getNumber());
 			System.out.println("toMove Color is " + toMove.getColor());
 			System.out.println("toMove position is " + toMove.getPosition());
-			toMove.move(dice.getNumber());
+			return toMove.move(dice.getNumber());
 		}
 	}
 }

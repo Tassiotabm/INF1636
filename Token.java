@@ -30,12 +30,17 @@ public class Token implements Subject{
 		this.position = -1;
 		this.inGame = false;
 	}
-	public void move(int pos){
+	public boolean move(int pos){
 		
 		System.out.println("Moving Token");
-		this.position = this.position + pos;
-		notifyAllObservers();
-	}
+		if(regrasdojogo.isPlayerColor(this.cor))
+		{
+			this.position = this.position + pos;
+			notifyAllObservers();
+			return true;
+		}
+		return false;
+	}	
 	public void add(){
 		if(this.inGame == false)
 			this.inGame = true;
