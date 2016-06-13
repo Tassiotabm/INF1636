@@ -36,6 +36,20 @@ public class Token implements Subject{
 		Dado dice = Dado.getDado();
 		System.out.println("Moving Token");
 		if (regrasdojogo.isPlayerColor(this.cor)) {
+			if (dice.getNumber() == 6) {
+				regrasdojogo.isSix();
+				if (regrasdojogo.threeSix()) {
+					this.position = 0;
+					notifyAllObservers();
+					return true;
+				}
+				else{
+					this.position = this.position + pos;
+					notifyAllObservers();
+					return true;
+				}
+			}
+			regrasdojogo.zeroSix();
 			if (!regrasdojogo.ableToMove(this))
 				return false;
 			Token toRemove = regrasdojogo.eaeComeu(this);
@@ -53,8 +67,6 @@ public class Token implements Subject{
 					}
 				}
 			} else {
-				if (true) {
-				} /* testa a regra da casa de inicio ou da casa de abrigo */
 				if (regrasdojogo.finalMove(this, pos)) {
 					this.position = this.position + pos;
 					this.remove();
@@ -64,8 +76,8 @@ public class Token implements Subject{
 					this.position = this.position + pos;
 					notifyAllObservers();
 					return true;
+					}
 				}
-			}
 		}
 		return false;
 	}

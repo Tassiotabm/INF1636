@@ -208,6 +208,9 @@ public class Ludointerface extends JFrame {
 									Jogador j = Jogador.playerTurn();
 									j.changeTurn();
 								}
+								if(regrasdojogo.gameFinished()){
+									Popup.infoBox(regrasdojogo.finalScore(Jogador.players), "Fim de Jogo");
+								}
 							}
 							System.out.println("x = " + x + " y = " + y);
 						}
@@ -220,9 +223,6 @@ public class Ludointerface extends JFrame {
 				});
 				revalidate();
 				repaint();
-				if(regrasdojogo.gameFinished()){
-					Popup.infoBox(regrasdojogo.finalScore(Jogador.players), "Fim de Jogo");
-				}
 			}
 			
 		});

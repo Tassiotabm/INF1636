@@ -2,7 +2,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 public class regrasdojogo {
-	
+	private static int regraDeTres;
 	private static Dado dice;
 	static boolean isPlayerColor(String cor){
 		
@@ -178,6 +178,19 @@ public class regrasdojogo {
 		if(countToken == 4)
 			return true;
 		return false;
+	}
+	
+	public static void isSix(){
+		regraDeTres++;
+	}
+	public static boolean threeSix(){
+		if(regraDeTres == 3){
+			return true;
+		}
+		return false;
+	}
+	public static void zeroSix(){
+		regraDeTres = 0;
 	}
 	public static String finalScore(ArrayList<Jogador> jogadores){
 		int greenScore = 0, redScore = 0, blueScore = 0, yellowScore = 0;
