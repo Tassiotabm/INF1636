@@ -17,7 +17,7 @@ public class Token implements Subject{
 	static Trajeto bluepath = new Trajeto("Azul");
 	static Trajeto yellowpath = new Trajeto("Amarelo");
 	static ArrayList<Token> gameTokens = new ArrayList<Token>();
-	private static ArrayList<Observer> observers = new ArrayList<Observer>();
+	private  ArrayList<Observer> observers = new ArrayList<Observer>();
 	public Token(String Cor){
 		this.cor = Cor;
 		this.position = -1;
@@ -25,36 +25,70 @@ public class Token implements Subject{
 		gameTokens.add(this);
 		notifyAllObservers();
 	}
-	public Token(){
+
+	public Token() {
 		this.cor = "Preto";
 		this.position = -1;
 		this.inGame = false;
 	}
-	public boolean move(int pos){
-		
+
+	public boolean move(int pos) {
+		Dado dice = Dado.getDado();
 		System.out.println("Moving Token");
-		if(regrasdojogo.isPlayerColor(this.cor))
-		{
-			if(pos == 6){
-			this.position = this.position + pos + 1;
-			notifyAllObservers();
-			return true;
-			}
-			else
-			{
-				this.position = this.position + pos ;
-				notifyAllObservers();
-				return true;
+		if (regrasdojogo.isPlayerColor(this.cor)) {
+			if (!regrasdojogo.ableToMove(this))
+				return false;
+			Token toRemove = regrasdojogo.eaeComeu(this);
+			if (toRemove != null) {
+				if (!regrasdojogo.isShelterfree(this.getPath().path.get(this.getPosition() + dice.getNumber()))) {
+					return false;
+				} else {
+					if (!regrasdojogo.isHomeFree(this.getPath().path.get(this.getPosition() + dice.getNumber()))) {
+						return false;
+					} else {
+						this.position = this.position + pos;
+						toRemove.remove();
+						notifyAllObservers();
+						return true;
+					}
+				}
+			} else {
+				if (true) {
+				} /* testa a regra da casa de inicio ou da casa de abrigo */
+				if (regrasdojogo.finalMove(this, pos)) {
+					this.position = this.position + pos;
+					this.remove();
+					notifyAllObservers();
+					return true;
+				} else {
+					this.position = this.position + pos;
+					notifyAllObservers();
+					return true;
+				}
 			}
 		}
 		return false;
-	}	
-	public void add(){
-		if(this.inGame == false)
+	}
+
+	public void add() {
+
+		if (this.inGame == false) {
+			if(!regrasdojogo.isHouseFree(this.cor)){
+				return;
+			}
+			System.out.println("adicionando Token da cor " + this.cor);
 			this.inGame = true;
-		this.position = 0;
-		
+			this.position = 0;
+		}
 		notifyAllObservers();
+	}
+	static void addNext(String cor){
+		for(Token t:Token.gameTokens){
+			if(t.getPosition() == -1 && t.getColor() == cor){
+				t.add();
+				return;
+			}
+		}
 	}
 	public void remove(){
 		this.inGame = false;
@@ -71,6 +105,21 @@ public class Token implements Subject{
 	public int getPosition(){
 		return this.position;
 	}
+	
+	public Trajeto getPath(){
+		switch(this.cor){
+		case "Verde" : return Token.greenpath;
+		case "Vermelho" : return Token.redpath;
+		case "Azul" : return Token.bluepath;
+		case "Amarelo" : return Token.yellowpath;
+		}
+		return null;
+	}
+	
+	public void setPosition(int pos){
+		this.position = pos;
+	}
+	
 	public void printToken(Graphics G){
 		switch (this.cor){
 		case "Verde" :
@@ -119,7 +168,7 @@ public class Token implements Subject{
 	}
 	@Override
 	public void attach(Observer observer) {
-		Token.observers.add(observer);
+		this.observers.add(observer);
 		
 	}
 	@Override

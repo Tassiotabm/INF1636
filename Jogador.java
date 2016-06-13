@@ -41,7 +41,9 @@ public class Jogador extends Observer {
 	public String getColor() {
 		return this.cor;
 	}
-
+	public ArrayList<Token> getPlayerTokens(){
+		return this.playerTokens;
+	}
 	static Color getColorAtual() {
 		for (Jogador j : players) {
 			if (j.turn == true) {

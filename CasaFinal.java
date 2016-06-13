@@ -1,7 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.geom.Ellipse2D;
 import java.awt.geom.Path2D;
 
 public class CasaFinal extends Observer {
@@ -15,10 +14,10 @@ public class CasaFinal extends Observer {
 
 	// Construtor
 	public CasaFinal() {
-		this.greenTokens = 0;
-		this.redTokens = 0;
-		this.yellowTokens = 0;
-		this.blueTokens = 0;
+		greenTokens = 0;
+		redTokens = 0;
+		yellowTokens = 0;
+		blueTokens = 0;
 	}
 
 	// Adicionar peça
@@ -39,16 +38,16 @@ public class CasaFinal extends Observer {
 		}
 	}
 
-	public int getQtdToken(String cor) {
+	public static int getTokens(String cor) {
 		switch (cor) {
 		case "Verde":
-			return this.greenTokens;
+			return greenTokens;
 		case "Vermelho":
-			return this.redTokens;
+			return redTokens;
 		case "Amarelo":
-			return this.yellowTokens;
+			return yellowTokens;
 		case "Azul":
-			return this.blueTokens;
+			return blueTokens;
 		}
 		return -1;
 	}
@@ -63,16 +62,16 @@ public class CasaFinal extends Observer {
 		triangle.lineTo(150, 150);
 		triangle.closePath();
 		t1.fill(triangle);
-		if (this.greenTokens == 1) {
+		if (greenTokens == 1) {
 			// uma bolinha no centro
 			g.setColor(Color.black);
 			g.drawOval(125, 145, 10, 10);
-		} else if (this.greenTokens == 2) {
+		} else if (greenTokens == 2) {
 			// primeira bolinha
 			g.drawOval(125, 140, 10, 10);
 			// segunda bolinha
 			g.drawOval(125, 150, 10, 10);
-		} else if (this.greenTokens == 3) {
+		} else if (greenTokens == 3) {
 			// primeira bolinha
 			g.drawOval(120, 140, 10, 10);
 			// segunda bolinha
@@ -99,22 +98,22 @@ public class CasaFinal extends Observer {
 		triangle2.closePath();
 		t2.fill(triangle2);
 		g.setColor(Color.black);
-		if (this.redTokens == 1) {
+		if (redTokens == 1) {
 			// uma bolinha no centro
 			g.drawOval(145, 125, 10, 10);
-		} else if (this.redTokens == 2) {
+		} else if (redTokens == 2) {
 			// primeira bolinha
 			g.drawOval(140, 125, 10, 10);
 			// segunda bolinha
 			g.drawOval(150, 125, 10, 10);
-		} else if (this.redTokens == 3) {
+		} else if (redTokens == 3) {
 			// primeira bolinha
 			g.drawOval(140, 120, 10, 10);
 			// segunda bolinha
 			g.drawOval(150, 120, 10, 10);
 			// terceira bolinha
 			g.drawOval(145, 130, 10, 10);
-		} else if (this.redTokens == 4) {
+		} else if (redTokens == 4) {
 			// primeira bolinha
 			g.drawOval(140, 120, 10, 10);
 			// segunda bolinha
@@ -135,22 +134,22 @@ public class CasaFinal extends Observer {
 		triangle3.closePath();
 		t3.fill(triangle3);
 		g.setColor(Color.black);
-		if (this.blueTokens == 1) {
+		if (blueTokens == 1) {
 			// uma bolinha no centro
 			g.drawOval(165, 145, 10, 10);
-		} else if (this.blueTokens == 2) {
+		} else if (blueTokens == 2) {
 			// primeira bolinha
 			g.drawOval(165, 140, 10, 10);
 			// segunda bolinha
 			g.drawOval(165, 150, 10, 10);
-		} else if (this.blueTokens == 3) {
+		} else if (blueTokens == 3) {
 			// primeira bolinha
 			g.drawOval(170, 140, 10, 10);
 			// segunda bolinha
 			g.drawOval(170, 150, 10, 10);
 			// terceira bolinha
 			g.drawOval(160, 145, 10, 10);
-		} else if (this.blueTokens == 4) {
+		} else if (blueTokens == 4) {
 			// primeira bolinha
 			g.drawOval(160, 140, 10, 10);
 			// segunda bolinha
@@ -170,22 +169,22 @@ public class CasaFinal extends Observer {
 		triangle4.closePath();
 		t4.fill(triangle4);
 		g.setColor(Color.black);
-		if (this.yellowTokens == 1) {
+		if (yellowTokens == 1) {
 			// uma bolinha no centro
 			g.drawOval(145, 165, 10, 10);
-		} else if (this.yellowTokens == 2) {
+		} else if (yellowTokens == 2) {
 			// primeira bolinha
 			g.drawOval(140, 165, 10, 10);
 			// segunda bolinha
 			g.drawOval(150, 165, 10, 10);
-		} else if (this.yellowTokens == 3) {
+		} else if (yellowTokens == 3) {
 			// primeira bolinha
 			g.drawOval(140, 170, 10, 10);
 			// segunda bolinha
 			g.drawOval(150, 170, 10, 10);
 			// terceira bolinha
 			g.drawOval(145, 160, 10, 10);
-		} else if (this.yellowTokens == 4) {
+		} else if (yellowTokens == 4) {
 			// primeira bolinha
 			g.drawOval(140, 160, 10, 10);
 			// segunda bolinha
@@ -213,9 +212,9 @@ public class CasaFinal extends Observer {
 				}
 			}
 		}
-		this.greenTokens = greenCount;
-		this.redTokens = redCount;
-		this.yellowTokens = yellowCount;
-		this.blueTokens = blueCount;
+		greenTokens = greenCount;
+		redTokens = redCount;
+		yellowTokens = yellowCount;
+		blueTokens = blueCount;
 	}
 }

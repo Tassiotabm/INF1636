@@ -48,6 +48,7 @@ public class Trajeto{
 			for(int i = 1; i < 6; i++)
 				path.add(new Point(i*20, 140));
 			//end of path
+			path.add(new Point(130,150));
 			break;
 			
 		// Trajeto Vermelho	
@@ -90,6 +91,7 @@ public class Trajeto{
 			for(int i = 1; i < 6; i++)
 				path.add(new Point(140, i*20));
 			//end of path
+			path.add(new Point(150,130));
 			break;
 			
 		// Trajeto Amarelo
@@ -131,6 +133,7 @@ public class Trajeto{
 			for(int i = 4; i >= 0; i--)
 				path.add(new Point(140, 180 + 20*i));
 			//end of path
+			path.add(new Point(150,160));
 			break;
 			
 		// Trajeto Azul
@@ -172,6 +175,7 @@ public class Trajeto{
 			for(int i = 4; i >=0; i--)
 				path.add(new Point(180 + 20*i,140));
 			//end of path
+			path.add(new Point(170,150));
 			break;
 			default:
 				//right

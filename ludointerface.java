@@ -113,25 +113,37 @@ public class Ludointerface extends JFrame {
 		green.setTurn(true);
 		for(int i = 0; i < 4; i ++)
 		{
-			greenList.add(new Token("Verde"));
-			redList.add(new Token("Vermelho"));
-			blueList.add(new Token("Azul"));
-			yellowList.add(new Token("Amarelo"));
+			Token greenT = new Token("Verde");
+			greenT.attach(green);
+			greenT.attach(finalHome);
+			greenT.attach(initialHome);
+			greenList.add(i, greenT);
+			
+			
+			Token redT = new Token("Vermelho");
+			redT.attach(red);
+			redT.attach(finalHome);
+			redT.attach(initialHome);
+			redList.add(i, redT);
+			
+			Token blueT = new Token("Azul");
+			blueT.attach(blue);
+			blueT.attach(finalHome);
+			blueT.attach(initialHome);
+			blueList.add(i, blueT);
+			
+			Token yellowT = new Token("Amarelo");
+			yellowT.attach(yellow);
+			yellowT.attach(finalHome);
+			yellowT.attach(initialHome);
+			yellowList.add(i, yellowT);
 		}
-		
-		greenList.get(0).attach(green);
-		redList.get(0).attach(red);
-		blueList.get(0).attach(blue);
-		yellowList.get(0).attach(yellow);
-		
-		greenList.get(0).attach(finalHome);
-		greenList.get(0).attach(initialHome);
-		
+
 		greenList.get(0).add();
 		redList.get(0).add();
 		blueList.get(0).add();
 		yellowList.get(0).add();
-		
+
 		// criar tabuleiro
 		Tabuleiro tabuleiro = new Tabuleiro();
 		// caracteristicas do jframe
@@ -142,10 +154,11 @@ public class Ludointerface extends JFrame {
 
 		JButton buttDado = new JButton("Jogar Dado");
 		JButton buttInsereToken = new JButton("Inserir Peça");
+		JButton buttPassaVez = new JButton("Passar a vez");
 
 		// Imprimir no ContentPane o tabuleiro
 		getContentPane().add(tabuleiro);
-		
+
 		// criar os boxlayout
 		BoxLayout BlocoPrincipal = new BoxLayout(getContentPane(), BoxLayout.LINE_AXIS);
 		BoxLayout SubBloco = new BoxLayout(PainelDireito, BoxLayout.Y_AXIS);
@@ -158,13 +171,14 @@ public class Ludointerface extends JFrame {
 									// botao
 
 		JLabel dadolabel = new JLabel();
-		LudoFachada lf= new LudoFachada();
+		LudoFachada lf = new LudoFachada();
 		PainelDireito.add(buttInsereToken);
 		buttInsereToken.setEnabled(false);
-		
+		buttPassaVez.setEnabled(true);
+		PainelDireito.add(buttPassaVez);
 		buttDado.setBackground(Jogador.getColorAtual());
-		  buttDado.setForeground(Color.black);
-		  
+		buttDado.setForeground(Color.black);
+		
 		buttDado.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
@@ -176,60 +190,71 @@ public class Ludointerface extends JFrame {
 				PainelDireito.add(dadolabel);
 				buttDado.setEnabled(false);
 				Jogador j = Jogador.playerTurn();
+				System.out.println("Jogador da vez é o " + j.getColor());
 				if (dice.getNumber() == 5 && regrasdojogo.isHouseFree(j.getColor())) {
 					buttInsereToken.setEnabled(true);
-					buttInsereToken.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent event) {
-							Jogador j = Jogador.playerTurn();
-							buttInsereToken.setEnabled(false);
-							for(Token t: Token.gameTokens){
-								if(!t.inGame && t.getColor() == j.getColor())
-								{
-									t.add();
-									break;
+				}
+				System.out.println("Dado n é 5 " + "Jogador da vez é " + j.getColor());
+				tabuleiro.addMouseListener(new mouseHandler() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						buttInsereToken.setEnabled(false);
+						if (!buttDado.isEnabled()) {
+							int x = e.getX();
+							int y = e.getY();
+							if (lf.clickToken(x, y)) {
+								buttDado.setEnabled(true);
+								if (dice.getNumber() != 6) {
+									Jogador j = Jogador.playerTurn();
+									j.changeTurn();
 								}
 							}
-							buttDado.setEnabled(true);
-							j.changeTurn();
-							buttDado.setBackground(Jogador.getColorAtual());
-							buttDado.setForeground(Color.black);
-							revalidate();
-							repaint();
+							System.out.println("x = " + x + " y = " + y);
 						}
-					});
-				} else {
-					tabuleiro.addMouseListener(new mouseHandler() {
-						@Override
-						public void mouseClicked(MouseEvent e) {
-							buttInsereToken.setEnabled(false);
-							if (!buttDado.isEnabled()) {
-								int x = e.getX();
-								int y = e.getY();
-								if (lf.clickToken(x, y)) {
-									buttDado.setEnabled(true);
-									if (dice.getNumber() != 6) {
-										Jogador j = Jogador.playerTurn();
-										j.changeTurn();
-									}
-								}
-								System.out.println("x = " + x + " y = " + y);
-							}
-							// Component c = e.getComponent();
-							// System.out.println("Component é " +
-							// c.toString());
-							buttDado.setBackground(Jogador.getColorAtual());
-							buttDado.setForeground(Color.black);
-							revalidate();
-							repaint();
-						}
+						buttDado.setBackground(Jogador.getColorAtual());
+						buttDado.setForeground(Color.black);
+						revalidate();
+						repaint();
+					}
 
-					});
-					revalidate();
-					repaint();
+				});
+				revalidate();
+				repaint();
+				if(regrasdojogo.gameFinished()){
+					Popup.infoBox(regrasdojogo.finalScore(Jogador.players), "Fim de Jogo");
 				}
 			}
+			
 		});
+		buttInsereToken.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				Jogador j = Jogador.playerTurn();
+				buttInsereToken.setEnabled(false);
 
+				System.out.println("about to add next token of the player " + j.getColor());
+				Token.addNext(j.getColor());
+
+				buttDado.setEnabled(true);
+				j.changeTurn();
+				buttDado.setBackground(Jogador.getColorAtual());
+				buttDado.setForeground(Color.black);
+				revalidate();
+				repaint();
+			}
+		});
+		buttPassaVez.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				Jogador j = Jogador.playerTurn();
+				buttInsereToken.setEnabled(false);
+
+				buttDado.setEnabled(true);
+				j.changeTurn();
+				buttDado.setBackground(Jogador.getColorAtual());
+				buttDado.setForeground(Color.black);
+				revalidate();
+				repaint();
+			}
+		});
 		// System.out.println("Fora do button listener");
 		PainelDireito.add(buttDado);
 
@@ -239,6 +264,7 @@ public class Ludointerface extends JFrame {
 		// Saida Padrao
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
 	}
 
 	public class mouseHandler implements MouseListener {

@@ -6,10 +6,10 @@ import java.awt.geom.Rectangle2D;
 public class QuadradoGrande extends Observer {
 
 	private String Cor;
-	private int greenTokens;
-	private int redTokens;
-	private int yellowTokens;
-	private int blueTokens;
+	private static int greenTokens;
+	private static int redTokens;
+	private static int yellowTokens;
+	private static int blueTokens;
 	
 	public QuadradoGrande()
 	{
@@ -34,7 +34,7 @@ public class QuadradoGrande extends Observer {
 		case "Azul": blueTokens++; break;
 		}
 	}
-	public int getTokens(String cor){
+	public static int getTokens(String cor){
 		switch(cor){
 		case "Verde": return greenTokens; 
 		case "Vermelho": return redTokens; 
@@ -132,17 +132,17 @@ public class QuadradoGrande extends Observer {
 	}
 	@Override
 	public void update() {
-		int greenCount = 4;
-		int redCount = 4;
-		int yellowCount =4;
-		int blueCount = 4;
+		int greenCount = 0;
+		int redCount = 0;
+		int yellowCount =0;
+		int blueCount = 0;
 		for(Token t : Token.gameTokens){
-			if(t.inGame){
+			if(t.getPosition() == -1){
 				switch(t.getColor()){
-				case "Verde" : greenCount--; break;
-				case "Vermelho" : redCount--; break;
-				case "Amarelo" : yellowCount--; break;
-				case "Azul" : blueCount--; break;
+				case "Verde" : greenCount++; break;
+				case "Vermelho" : redCount++; break;
+				case "Amarelo" : yellowCount++; break;
+				case "Azul" : blueCount++; break;
 				}
 			}
 		}
