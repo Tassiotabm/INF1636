@@ -32,62 +32,16 @@ public class Token implements Subject{
 		this.inGame = false;
 	}
 
-	public boolean move(int pos) {
+	public void move(int pos) {
 		Dado dice = Dado.getDado();
 		System.out.println("Moving Token");
-		if (regrasdojogo.isPlayerColor(this.cor)) {
-			if (dice.getNumber() == 6) {
-				regrasdojogo.isSix();
-				if (regrasdojogo.threeSix()) {
-					this.position = 0;
-					notifyAllObservers();
-					return true;
-				}
-				else{
-					this.position = this.position + pos;
-					notifyAllObservers();
-					return true;
-				}
-			}
-			regrasdojogo.zeroSix();
-			if (!regrasdojogo.ableToMove(this))
-				return false;
-			Token toRemove = regrasdojogo.eaeComeu(this);
-			if (toRemove != null) {
-				if (!regrasdojogo.isShelterfree(this.getPath().path.get(this.getPosition() + dice.getNumber()))) {
-					return false;
-				} else {
-					if (!regrasdojogo.isHomeFree(this.getPath().path.get(this.getPosition() + dice.getNumber()))) {
-						return false;
-					} else {
-						this.position = this.position + pos;
-						toRemove.remove();
-						notifyAllObservers();
-						return true;
-					}
-				}
-			} else {
-				if (regrasdojogo.finalMove(this, pos)) {
-					this.position = this.position + pos;
-					this.remove();
-					notifyAllObservers();
-					return true;
-				} else {
-					this.position = this.position + pos;
-					notifyAllObservers();
-					return true;
-					}
-				}
-		}
-		return false;
+		this.position = this.position + pos;
+		notifyAllObservers();
 	}
 
 	public void add() {
 
 		if (this.inGame == false) {
-			if(!regrasdojogo.isHouseFree(this.cor)){
-				return;
-			}
 			System.out.println("adicionando Token da cor " + this.cor);
 			this.inGame = true;
 			this.position = 0;
@@ -130,6 +84,7 @@ public class Token implements Subject{
 	
 	public void setPosition(int pos){
 		this.position = pos;
+		notifyAllObservers();
 	}
 	
 	public void printToken(Graphics G){

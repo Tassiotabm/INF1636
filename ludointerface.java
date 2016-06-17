@@ -191,7 +191,7 @@ public class Ludointerface extends JFrame {
 				buttDado.setEnabled(false);
 				Jogador j = Jogador.playerTurn();
 				System.out.println("Jogador da vez é o " + j.getColor());
-				if (dice.getNumber() == 5 && regrasdojogo.isHouseFree(j.getColor())) {
+				if (dice.getNumber() == 5/* && regrasdojogo.isHouseFree(j.getColor())*/) {
 					buttInsereToken.setEnabled(true);
 				}
 				System.out.println("Dado n é 5 " + "Jogador da vez é " + j.getColor());
@@ -207,9 +207,6 @@ public class Ludointerface extends JFrame {
 								if (dice.getNumber() != 6) {
 									Jogador j = Jogador.playerTurn();
 									j.changeTurn();
-								}
-								if(regrasdojogo.gameFinished()){
-									Popup.infoBox(regrasdojogo.finalScore(Jogador.players), "Fim de Jogo");
 								}
 							}
 							System.out.println("x = " + x + " y = " + y);
@@ -230,12 +227,11 @@ public class Ludointerface extends JFrame {
 			public void actionPerformed(ActionEvent event) {
 				Jogador j = Jogador.playerTurn();
 				buttInsereToken.setEnabled(false);
-
-				System.out.println("about to add next token of the player " + j.getColor());
-				Token.addNext(j.getColor());
-
-				buttDado.setEnabled(true);
-				j.changeTurn();
+				if(lf.addToken()){
+					System.out.println("about to add next token of the player " + j.getColor());
+					buttDado.setEnabled(true);
+					j.changeTurn();
+				}
 				buttDado.setBackground(Jogador.getColorAtual());
 				buttDado.setForeground(Color.black);
 				revalidate();

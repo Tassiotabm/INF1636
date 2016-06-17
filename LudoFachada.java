@@ -18,7 +18,7 @@ public class LudoFachada {
 		this.dice._throw();
 	}
 	public boolean clickToken(int x, int y){
-		
+		int number = dice.getNumber();
 		Token toMove = mCheck.isAToken(x, y, gameTokens);
 		if(toMove == null){
 			System.out.println("toMove token is null");
@@ -29,7 +29,19 @@ public class LudoFachada {
 			System.out.println("Dice number is " + dice.getNumber());
 			System.out.println("toMove Color is " + toMove.getColor());
 			System.out.println("toMove position is " + toMove.getPosition());
-			return toMove.move(dice.getNumber());
+			return regrasdojogo.rulez(toMove);
 		}
+	}
+	public boolean addToken(){
+		if(!regrasdojogo.isHouseFree(Jogador.playerTurn().getColor())){
+			return false;
+		}
+		for(Token t:Token.gameTokens){
+			if(t.getPosition() == -1 && t.getColor() == Jogador.playerTurn().getColor()){
+				t.add();
+				return true;
+			}
+		}
+		return false;
 	}
 }

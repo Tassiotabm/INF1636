@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class regrasdojogo {
 	private static int regraDeTres;
 	private static Dado dice;
-	static boolean isPlayerColor(String cor){
+	private static boolean isPlayerColor(String cor){
 		
 		Jogador j = Jogador.playerTurn();
 		if(j.getColor() == cor)
@@ -12,7 +12,7 @@ public class regrasdojogo {
 		else
 			return false;
 	}
-	static boolean isPlayerTurn(String cor){
+	private static boolean isPlayerTurn(String cor){
 		Jogador j = Jogador.playerTurn();
 		if(j.getTurn())
 			return true;
@@ -48,7 +48,7 @@ public class regrasdojogo {
 		return true;
 	}
 	
-	public static boolean isShelterfree(Point p) {
+	private static boolean isShelterfree(Point p) {
 		if (p.x == 20 && p.y == 160) {
 			return false;
 		} else {
@@ -66,7 +66,7 @@ public class regrasdojogo {
 		}
 		return true;
 	}
-	public static boolean isHomeFree(Point p) {
+	private static boolean isHomeFree(Point p) {
 		if (p.x == 20 && p.y == 120) {
 			return false;
 		} else {
@@ -84,7 +84,7 @@ public class regrasdojogo {
 		}
 		return true;
 	}
-	public static boolean ableToMove(Token toMove) {
+	private static boolean ableToMove(Token toMove) {
 		ArrayList<Token> pT = null;
 		dice = Dado.getDado();
 		String cor = toMove.getColor();
@@ -106,7 +106,7 @@ public class regrasdojogo {
 		return true;
 	}
 	
-	public static boolean isHomeEmpty(String cor){
+	private static boolean isHomeEmpty(String cor){
 		int  countToken = 0;
 		switch(cor){
 		case "Verde" : countToken = QuadradoGrande.getTokens("Verde"); break;
@@ -121,7 +121,7 @@ public class regrasdojogo {
 		
 	}
 	
-	public static Token eaeComeu(Token comedor){
+	private static Token eaeComeu(Token comedor){
 		dice = Dado.getDado();
 		String cor = comedor.getColor();
 		Point p = null;
@@ -152,7 +152,7 @@ public class regrasdojogo {
 		return null;
 	}
 	
-	public static boolean finalMove(Token f, int pos){
+	private static boolean finalMove(Token f, int pos){
 		
 		if(f.getPosition() + pos > 58)
 			return false;
@@ -163,7 +163,14 @@ public class regrasdojogo {
 		}
 		return false;
 	}
-	public static boolean gameFinished(){
+	
+	private static boolean estrapolou(Token f, int pos){
+		if(f.getPosition() + pos > 58)
+			return true;
+		else
+			return false;
+	}
+	private static boolean gameFinished(){
 		int countToken = 0;
 		countToken = CasaFinal.getTokens("Verde");
 		if(countToken == 4)
@@ -180,19 +187,68 @@ public class regrasdojogo {
 		return false;
 	}
 	
-	public static void isSix(){
+	private static void isSix(){
 		regraDeTres++;
 	}
-	public static boolean threeSix(){
+	private static boolean threeSix(){
 		if(regraDeTres == 3){
 			return true;
 		}
 		return false;
 	}
-	public static void zeroSix(){
+	private static void zeroSix(){
 		regraDeTres = 0;
 	}
-	public static String finalScore(ArrayList<Jogador> jogadores){
+	
+	public static boolean rulez(Token toMove){
+		Dado dice = Dado.getDado();
+		int number = dice.getNumber();
+		if (regrasdojogo.isPlayerColor(toMove.getColor())) {
+			if (dice.getNumber() == 6) {
+				regrasdojogo.isSix();
+				if (regrasdojogo.threeSix()) {
+					toMove.setPosition(0);
+					regrasdojogo.zeroSix();
+					return true;
+				}
+			}
+			else
+				regrasdojogo.zeroSix();
+			
+			if (!regrasdojogo.ableToMove(toMove))
+				return false;
+			if (regrasdojogo.estrapolou(toMove, number))
+				return false;
+			Token toRemove = regrasdojogo.eaeComeu(toMove);
+			if (toRemove != null) {
+				if (!regrasdojogo.isShelterfree(toMove.getPath().path.get(toMove.getPosition() + number))) {
+					return false;
+				} else {
+					if (!regrasdojogo.isHomeFree(toMove.getPath().path.get(toMove.getPosition() + number))) {
+						return false;
+					} else {
+						toMove.move(number);
+						toRemove.remove();
+						return true;
+					}
+				}
+			} else {
+				if (regrasdojogo.finalMove(toMove, number)) {
+					toMove.move(number);
+					toMove.remove();
+					if(regrasdojogo.gameFinished()){
+						Popup.infoBox(regrasdojogo.finalScore(Jogador.players), "Fim de Jogo");
+					}
+					return true;
+				} else {
+					toMove.move(number);
+					return true;
+					}
+				}
+		}
+		return false;
+	}
+	private static String finalScore(ArrayList<Jogador> jogadores){
 		int greenScore = 0, redScore = 0, blueScore = 0, yellowScore = 0;
 		int maior = 0;
 		for(Jogador j:jogadores){
