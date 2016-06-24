@@ -8,6 +8,7 @@ public class Jogador extends Observer {
 	private boolean turn;
 	static ArrayList<Jogador> players = new ArrayList<Jogador>();
 	public ArrayList<Token> playerTokens = new ArrayList<Token>();
+	
 	public Jogador(String cor){
 		this.cor = cor;
 		players.add(this);
@@ -69,6 +70,15 @@ public class Jogador extends Observer {
 		return Color.BLACK;
 	}
 
+	public static void setAllTurns(String nowPlayer){
+		for(Jogador j : players){
+			if( new String(j.cor).equals(nowPlayer) == true)
+				j.turn = true;
+			else
+				j.turn = false;
+		}
+	}
+	
 	@Override
 	public void update() {
 		for (Token t: Token.gameTokens){

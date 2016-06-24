@@ -195,6 +195,16 @@ public class CasaFinal extends Observer {
 			g.drawOval(150, 170, 10, 10);
 		}
 	}
+	
+	static String printaCasaFinal(){
+
+		String retorno = greenTokens+"\n";
+		retorno = retorno+redTokens+"\n";
+		retorno = retorno+yellowTokens+"\n";
+		retorno = retorno+blueTokens;
+		
+		return retorno;
+	}
 
 	@Override
 	public void update() {

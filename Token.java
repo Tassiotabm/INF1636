@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.swing.ImageIcon;
 
@@ -85,6 +86,40 @@ public class Token implements Subject{
 	public void setPosition(int pos){
 		this.position = pos;
 		notifyAllObservers();
+	}
+	
+	static Vector<Vector<String>> printTokens(){
+		Vector<String> posicaoVerde = new Vector<String>();
+		Vector<String> posicaoVermelho = new Vector<String>();
+		Vector<String> posicaoAzul= new Vector<String>();
+		Vector<String> posicaoAmarelo = new Vector<String>();
+		Vector<Vector<String>> posicao = new Vector<Vector<String>>();
+		
+		for(Token t:Token.gameTokens){
+			if(t.getColor() == "Vermelho"){
+				posicaoVermelho.add(Integer.toString(t.position));
+			}
+		}
+		posicao.add(posicaoVermelho);
+		for(Token t:Token.gameTokens){
+			if(t.getColor() == "Verde"){
+				posicaoVerde.add(Integer.toString(t.position));
+			}
+		}
+		posicao.add(posicaoVerde);
+		for(Token t:Token.gameTokens){
+			if(t.getColor() == "Azul"){
+				posicaoAzul.add(Integer.toString(t.position));
+			}
+		}
+		posicao.add(posicaoAzul);
+		for(Token t:Token.gameTokens){
+			if(t.getColor() == "Amarelo"){
+				posicaoAmarelo.add(Integer.toString(t.position));
+			}
+		}
+		posicao.add(posicaoAmarelo);
+		return posicao;
 	}
 	
 	public void printToken(Graphics G){

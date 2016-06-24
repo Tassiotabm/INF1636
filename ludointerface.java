@@ -12,9 +12,17 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.*;
 import java.awt.geom.Path2D;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.Vector;
 
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
@@ -152,9 +160,11 @@ public class Ludointerface extends JFrame {
 
 		JPanel PainelDireito = new JPanel();
 
-		JButton buttDado = new JButton("Jogar Dado");
+		JButton buttDado = new JButton(" Jogar Dado  ");
 		JButton buttInsereToken = new JButton("Inserir Peça");
 		JButton buttPassaVez = new JButton("Passar a vez");
+		JButton buttSalvarJogo = new JButton("Salvar o jogo");
+		JButton buttCarregarJogo = new JButton("Carregar jogo");
 
 		// Imprimir no ContentPane o tabuleiro
 		getContentPane().add(tabuleiro);
@@ -251,9 +261,74 @@ public class Ludointerface extends JFrame {
 				repaint();
 			}
 		});
+		buttSalvarJogo.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				try {
+				      revalidate();
+				      repaint();
+				      //create an print writer for writing to a file
+				      PrintStream out = new PrintStream(new FileOutputStream("output.txt"));
+				      //output to the file a line
+				     String jogadordavez = "fudeu";
+				     for(Jogador j:Jogador.players){
+				    	  	if(j.getTurn() == true && j.getColor() == "Verde"){
+				    	  		jogadordavez = "Verde";
+				    	  	}
+				    	  	else if(j.getTurn() == true && j.getColor() == "Vermelho"){
+				    	  		jogadordavez = "Vermelho";
+				    	  	}
+				    	  	else if(j.getTurn() == true && j.getColor() == "Amarelo"){
+				    	  		jogadordavez = "Amarelo";
+				    	  	}
+				    	  	else if(j.getTurn() == true && j.getColor() == "Azul"){
+				    	  		jogadordavez = "Azul";
+				    	  	}
+						}
+				      out.println(jogadordavez);
+				      out.println(QuadradoGrande.printQuadradoGrande());
+				      out.println(CasaFinal.printaCasaFinal());
+				      
+				      Vector<Vector<String>> PrintToken = Token.printTokens();
+				      for(int i=0;i<4;i++){
+				    	  for(int j=0;j<4;j++){
+						      out.println(PrintToken.get(i).get(j));
+				    	  }
+				      }
+
+				      System.setOut(out);
+				      out.close();
+				   }
+				      catch(IOException e1) {
+				        System.out.println("Error during reading/writing");
+				   }
+				
+			}			
+		});
+		buttCarregarJogo.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				File file = new File("input.txt");
+				try {
+				     Scanner sc = new Scanner(file);
+
+				     String nowPlayer = sc.nextLine();
+				     System.out.println(nowPlayer);
+				     
+				     Jogador.setAllTurns(nowPlayer);
+				     
+				     sc.close();
+				   }
+				      catch(IOException e1) {
+				        System.out.println("Error during reading/writing");
+				   }
+			      revalidate();
+			      repaint();
+			}			
+		});
+		
 		// System.out.println("Fora do button listener");
 		PainelDireito.add(buttDado);
-
+		PainelDireito.add(buttSalvarJogo);
+		PainelDireito.add(buttCarregarJogo);
 		// Adicionar o painel direito ao JFrame
 		this.add(PainelDireito);
 

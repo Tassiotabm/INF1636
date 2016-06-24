@@ -130,6 +130,15 @@ public class QuadradoGrande extends Observer {
 			}
 			G.drawRect(0,0,120,120);
 	}
+	static String printQuadradoGrande(){
+	
+		String retorno = greenTokens+"\n";
+		retorno = retorno + redTokens+"\n";
+		retorno = retorno+yellowTokens+"\n";
+		retorno = retorno + blueTokens;
+		
+		return retorno;
+	}
 	@Override
 	public void update() {
 		int greenCount = 0;
