@@ -181,7 +181,7 @@ public class Ludointerface extends JFrame {
 									// botao
 
 		JLabel dadolabel = new JLabel();
-		LudoFachada lf = new LudoFachada();
+		LudoFachada lf = LudoFachada.getFacade();
 		PainelDireito.add(buttInsereToken);
 		buttInsereToken.setEnabled(false);
 		buttPassaVez.setEnabled(true);

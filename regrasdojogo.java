@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public class regrasdojogo {
 	private static int regraDeTres;
 	private static Dado dice;
+	private static boolean anda20 = false;
 	private static boolean isPlayerColor(String cor){
 		
 		Jogador j = Jogador.playerTurn();

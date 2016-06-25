@@ -6,12 +6,18 @@ import java.awt.Point;
 public class LudoFachada {
 	
 	private Dado 	dice= null;
+	private static LudoFachada facadeInstance = null;
 	private ArrayList<Token> gameTokens = null;
 	MovementCheck mCheck = null;
-	public LudoFachada(){
+	private LudoFachada(){
 		dice = Dado.getDado();
 		gameTokens = Token.gameTokens;
 		mCheck = new MovementCheck();
+	}
+	public static LudoFachada getFacade(){
+		if(facadeInstance == null)
+			return new LudoFachada();
+		return facadeInstance;
 	}
 	public void jogarDado(){
 

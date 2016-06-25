@@ -51,7 +51,12 @@ public class CasaFinal extends Observer {
 		}
 		return -1;
 	}
-
+	public static void setTokens(int greenT, int redT, int yellowT, int blueT){
+		greenTokens = greenT;
+		redTokens = redT;
+		yellowTokens = yellowT;
+		blueTokens = blueT;
+	}
 	public void print(Graphics g) {
 		// pintar triângulo 1 Green
 		Graphics2D t1 = (Graphics2D) g;

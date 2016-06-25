@@ -43,6 +43,13 @@ public class QuadradoGrande extends Observer {
 		}
 		return -1;
 	}
+	public static void setTokens(int greenT, int redT, int yellowT, int blueT){
+		greenTokens = greenT;
+		redTokens = redT;
+		yellowTokens = yellowT;
+		blueTokens = blueT;
+		
+	}
 	public void Print(Graphics G)
 	{
 		Graphics2D g = (Graphics2D) G;
