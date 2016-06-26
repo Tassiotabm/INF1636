@@ -1,10 +1,20 @@
+package Regra;
+import Estrutura.*;
 import java.awt.Point;
 import java.util.ArrayList;
+
+import Estrutura.CasaFinal;
+import Estrutura.Dado;
+import Estrutura.Jogador;
+import Estrutura.Popup;
+import Estrutura.QuadradoGrande;
+import Estrutura.Score;
+import Estrutura.Token;
 
 public class regrasdojogo {
 	private static int regraDeTres;
 	private static Dado dice;
-	private static boolean anda20 = false;
+	public static boolean anda20 = false;
 	private static boolean isPlayerColor(String cor){
 		
 		Jogador j = Jogador.playerTurn();
@@ -122,22 +132,22 @@ public class regrasdojogo {
 		
 	}
 	
-	private static Token eaeComeu(Token comedor){
+	private static Token eaeComeu(Token comedor, int number){
 		dice = Dado.getDado();
 		String cor = comedor.getColor();
 		Point p = null;
 		switch (cor) {
 		case "Verde":
-			p = Token.greenpath.path.get(comedor.getPosition() + dice.getNumber());
+			p = Token.greenpath.path.get(comedor.getPosition() + number);
 			break;
 		case "Vermelho":
-			p = Token.redpath.path.get(comedor.getPosition() + dice.getNumber());
+			p = Token.redpath.path.get(comedor.getPosition() + number);
 			break;
 		case "Azul":
-			p = Token.bluepath.path.get(comedor.getPosition() + dice.getNumber());
+			p = Token.bluepath.path.get(comedor.getPosition() + number);
 			break;
 		case "Amarelo":
-			p = Token.yellowpath.path.get(comedor.getPosition() + dice.getNumber());
+			p = Token.yellowpath.path.get(comedor.getPosition() + number);
 			break;
 		}
 		for (Jogador j : Jogador.players) {
@@ -200,9 +210,68 @@ public class regrasdojogo {
 	private static void zeroSix(){
 		regraDeTres = 0;
 	}
-	
+
+	public static boolean anda20(Token t) {
+		ArrayList<Token> pT = null;
+		String cor = t.getColor();
+		anda20 = false;
+		if (regrasdojogo.isPlayerColor(t.getColor())) {
+			if (regrasdojogo.estrapolou(t, 20)) {
+				return false;
+			} else {
+				
+				for(Jogador j: Jogador.players){
+					if(j.getColor() == cor){
+						pT = j.getPlayerTokens();
+						break;
+					}
+				}
+				for(Token to: pT){
+					if(to.getPosition() == t.getPosition() + 20){
+						if(to.getPosition() == 58)
+							return true;
+						return false;
+					}
+				}
+				if (regrasdojogo.estrapolou(t, 20))
+					return false;
+				Token toRemove = regrasdojogo.eaeComeu(t, 20);
+				if (toRemove != null) {
+					if (!regrasdojogo.isShelterfree(t.getPath().path.get(t.getPosition() + 20))) {
+						return false;
+					} else {
+						if (!regrasdojogo.isHomeFree(t.getPath().path.get(t.getPosition() + 20))) {
+							return false;
+						} else {
+							t.move(20);
+							toRemove.remove();
+							return true;
+						}
+					}
+				} else {
+					if (regrasdojogo.finalMove(t, 20)) {
+						t.move(20);
+						t.remove();
+						if(regrasdojogo.gameFinished()){
+							Popup.infoBox(regrasdojogo.finalScore(Jogador.players), "Fim de Jogo");
+						}
+						return true;
+					} else {
+						t.move(20);
+						return true;
+						}
+					}
+				/*
+				 * 
+				 */
+			}
+		}
+		return false;
+	}
+
 	public static boolean rulez(Token toMove){
 		Dado dice = Dado.getDado();
+		anda20 = false;
 		int number = dice.getNumber();
 		if (regrasdojogo.isPlayerColor(toMove.getColor())) {
 			if (dice.getNumber() == 6) {
@@ -213,15 +282,17 @@ public class regrasdojogo {
 					return true;
 				}
 			}
-			else
-				regrasdojogo.zeroSix();
+			regrasdojogo.zeroSix();
 			
 			if (!regrasdojogo.ableToMove(toMove))
 				return false;
 			if (regrasdojogo.estrapolou(toMove, number))
 				return false;
-			Token toRemove = regrasdojogo.eaeComeu(toMove);
+			
+			Token toRemove = regrasdojogo.eaeComeu(toMove, number);
+			
 			if (toRemove != null) {
+				anda20 = true;
 				if (!regrasdojogo.isShelterfree(toMove.getPath().path.get(toMove.getPosition() + number))) {
 					return false;
 				} else {

@@ -1,3 +1,5 @@
+package Estrutura;
+
 
 public class Score {
 	private int score;

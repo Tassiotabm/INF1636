@@ -1,3 +1,5 @@
+package Estrutura;
+
 import java.awt.Color;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -6,7 +8,7 @@ import javax.swing.text.html.StyleSheet;
 public class Jogador extends Observer {
 	private String cor;
 	private boolean turn;
-	static ArrayList<Jogador> players = new ArrayList<Jogador>();
+	public static ArrayList<Jogador> players = new ArrayList<Jogador>();
 	public ArrayList<Token> playerTokens = new ArrayList<Token>();
 	
 	public Jogador(String cor){
@@ -31,7 +33,7 @@ public class Jogador extends Observer {
 	public void setTurn(boolean a){
 		this.turn = a;
 	}
-	static Jogador playerTurn(){
+	public static Jogador playerTurn(){
 		for(Jogador j: players){
 			if(j.turn == true)
 				return j;
@@ -45,7 +47,7 @@ public class Jogador extends Observer {
 	public ArrayList<Token> getPlayerTokens(){
 		return this.playerTokens;
 	}
-	static Color getColorAtual() {
+	public static Color getColorAtual() {
 		for (Jogador j : players) {
 			if (j.turn == true) {
 				Color color;

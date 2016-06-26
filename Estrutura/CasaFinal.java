@@ -1,3 +1,5 @@
+package Estrutura;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -201,7 +203,7 @@ public class CasaFinal extends Observer {
 		}
 	}
 	
-	static String printaCasaFinal(){
+	public static String printaCasaFinal(){
 
 		String retorno = greenTokens+"\n";
 		retorno = retorno+redTokens+"\n";

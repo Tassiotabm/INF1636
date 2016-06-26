@@ -1,3 +1,5 @@
+package Interface;
+
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -5,6 +7,16 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import Estrutura.CasaFinal;
+import Estrutura.Dado;
+import Estrutura.Jogador;
+import Estrutura.LudoFachada;
+import Estrutura.Popup;
+import Estrutura.QuadradoGrande;
+import Estrutura.Token;
+import Estrutura.Trajeto;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,6 +40,7 @@ import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import java.awt.Point;
 
+import Estrutura.*;
 public class Ludointerface extends JFrame {
 	
 
@@ -118,7 +131,6 @@ public class Ludointerface extends JFrame {
 		ListaTrajetos.add(new Trajeto("Vermelho"));
 		ListaTrajetos.add(new Trajeto("Amarelo"));
 		
-		green.setTurn(true);
 		for(int i = 0; i < 4; i ++)
 		{
 			Token greenT = new Token("Verde");
@@ -146,7 +158,16 @@ public class Ludointerface extends JFrame {
 			yellowT.attach(initialHome);
 			yellowList.add(i, yellowT);
 		}
-
+		// carregar jogo
+		
+		/*
+		 * 
+		 */
+		
+		// ou
+		
+		// action event Jogar Jogo
+		green.setTurn(true);
 		greenList.get(0).add();
 		redList.get(0).add();
 		blueList.get(0).add();
@@ -189,6 +210,28 @@ public class Ludointerface extends JFrame {
 		buttDado.setBackground(Jogador.getColorAtual());
 		buttDado.setForeground(Color.black);
 		
+		tabuleiro.addMouseListener(new mouseHandler() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (lf.getState20()) {
+					buttInsereToken.setEnabled(false);
+					int x = e.getX();
+					int y = e.getY();
+					if (lf.clickToken(x, y)) {
+						buttDado.setEnabled(true);
+						Jogador j = Jogador.playerTurn();
+						j.changeTurn();
+					}
+					System.out.println("x = " + x + " y = " + y);
+					buttDado.setBackground(Jogador.getColorAtual());
+					buttDado.setForeground(Color.black);
+					revalidate();
+					repaint();
+				}
+			}
+
+		});
+
 		buttDado.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
@@ -214,7 +257,7 @@ public class Ludointerface extends JFrame {
 							int y = e.getY();
 							if (lf.clickToken(x, y)) {
 								buttDado.setEnabled(true);
-								if (dice.getNumber() != 6) {
+								if (dice.getNumber() != 6 && !lf.getState20()) {
 									Jogador j = Jogador.playerTurn();
 									j.changeTurn();
 								}
@@ -285,8 +328,6 @@ public class Ludointerface extends JFrame {
 				    	  	}
 						}
 				      out.println(jogadordavez);
-				      out.println(QuadradoGrande.printQuadradoGrande());
-				      out.println(CasaFinal.printaCasaFinal());
 				      
 				      Vector<Vector<String>> PrintToken = Token.printTokens();
 				      for(int i=0;i<4;i++){
@@ -305,26 +346,55 @@ public class Ludointerface extends JFrame {
 			}			
 		});
 		buttCarregarJogo.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent event){
-				File file = new File("input.txt");
-				try {
-				     Scanner sc = new Scanner(file);
-
-				     String nowPlayer = sc.nextLine();
-				     System.out.println(nowPlayer);
-				     
-				     Jogador.setAllTurns(nowPlayer);
-				     
-				     sc.close();
-				   }
-				      catch(IOException e1) {
-				        System.out.println("Error during reading/writing");
-				   }
-			      revalidate();
-			      repaint();
-			}			
-		});
-		
+			   public void actionPerformed(ActionEvent event){
+			    buttCarregarJogo.setEnabled(false);
+			    File file = new File("output.txt");
+			    try {
+			         Scanner sc = new Scanner(file);
+			         Popup.infoBox("Você pode carregar o jogo apenas uma vez,\nse quiser carregar outro jogo execute o programa again","Carregar Jogo");
+			         String nowPlayer = sc.nextLine();
+			         System.out.println(nowPlayer);
+			         
+			         Jogador.setAllTurns(nowPlayer);
+			         
+			         for(Jogador j:Jogador.players){
+			          int scInt = sc.nextInt();
+			          if(scInt != -1){
+			           j.playerTokens.get(0).inGame = true;
+			           j.playerTokens.get(0).setPosition(scInt);
+			           if(scInt == 58)
+			            j.playerTokens.get(0).remove();
+			          }
+			          scInt = sc.nextInt();
+			          if(scInt != -1){
+			           j.playerTokens.get(1).inGame = true;
+			           j.playerTokens.get(1).setPosition(scInt);
+			           if(scInt == 58)
+			            j.playerTokens.get(1).remove();
+			          }
+			          scInt = sc.nextInt();
+			          if(scInt != -1){
+			           j.playerTokens.get(2).inGame = true;
+			           j.playerTokens.get(2).setPosition(scInt);
+			           if(scInt == 58)
+			            j.playerTokens.get(2).remove();
+			          }
+			          scInt = sc.nextInt();
+			          if(scInt != -1){
+			           j.playerTokens.get(3).inGame = true;
+			           j.playerTokens.get(3).setPosition(scInt);
+			           if(scInt == 58)
+			            j.playerTokens.get(3).remove();
+			          }
+			         }
+			       }
+			          catch(IOException e1) {
+			            System.out.println("Error during reading/writing");
+			       }
+			         revalidate();
+			         repaint();
+			   }   
+			  });
 		// System.out.println("Fora do button listener");
 		PainelDireito.add(buttDado);
 		PainelDireito.add(buttSalvarJogo);

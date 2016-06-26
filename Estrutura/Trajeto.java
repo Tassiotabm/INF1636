@@ -1,3 +1,5 @@
+package Estrutura;
+
 import java.util.ArrayList;
 import java.awt.Point;
 

@@ -1,3 +1,5 @@
+package Estrutura;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -137,7 +139,7 @@ public class QuadradoGrande extends Observer {
 			}
 			G.drawRect(0,0,120,120);
 	}
-	static String printQuadradoGrande(){
+	public static String printQuadradoGrande(){
 	
 		String retorno = greenTokens+"\n";
 		retorno = retorno + redTokens+"\n";

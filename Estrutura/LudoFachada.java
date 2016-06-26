@@ -1,6 +1,10 @@
+package Estrutura;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+
+import Regra.regrasdojogo;
+
 import java.awt.Point;
 
 public class LudoFachada {
@@ -23,6 +27,9 @@ public class LudoFachada {
 
 		this.dice._throw();
 	}
+	public boolean getState20(){
+		return regrasdojogo.anda20;
+	}
 	public boolean clickToken(int x, int y){
 		int number = dice.getNumber();
 		Token toMove = mCheck.isAToken(x, y, gameTokens);
@@ -35,6 +42,9 @@ public class LudoFachada {
 			System.out.println("Dice number is " + dice.getNumber());
 			System.out.println("toMove Color is " + toMove.getColor());
 			System.out.println("toMove position is " + toMove.getPosition());
+			if(regrasdojogo.anda20){
+				return regrasdojogo.anda20(toMove);
+			}
 			return regrasdojogo.rulez(toMove);
 		}
 	}

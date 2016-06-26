@@ -1,3 +1,5 @@
+package Estrutura;
+
 
 public abstract class Observer {
 	protected Subject subject;

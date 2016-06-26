@@ -1,3 +1,5 @@
+package Estrutura;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -13,11 +15,11 @@ public class Token implements Subject{
 	private int position;
 	public boolean inGame;
 	// Trajetos estáticos, são os mesmos para cada peça
-	static Trajeto greenpath = new Trajeto("Verde");
-	static Trajeto redpath = new Trajeto("Vermelho");
-	static Trajeto bluepath = new Trajeto("Azul");
-	static Trajeto yellowpath = new Trajeto("Amarelo");
-	static ArrayList<Token> gameTokens = new ArrayList<Token>();
+	public static Trajeto greenpath = new Trajeto("Verde");
+	public static Trajeto redpath = new Trajeto("Vermelho");
+	public static Trajeto bluepath = new Trajeto("Azul");
+	public static Trajeto yellowpath = new Trajeto("Amarelo");
+	public static ArrayList<Token> gameTokens = new ArrayList<Token>();
 	private  ArrayList<Observer> observers = new ArrayList<Observer>();
 	public Token(String Cor){
 		this.cor = Cor;
@@ -88,7 +90,7 @@ public class Token implements Subject{
 		notifyAllObservers();
 	}
 	
-	static Vector<Vector<String>> printTokens(){
+	public static Vector<Vector<String>> printTokens(){
 		Vector<String> posicaoVerde = new Vector<String>();
 		Vector<String> posicaoVermelho = new Vector<String>();
 		Vector<String> posicaoAzul= new Vector<String>();
@@ -100,16 +102,16 @@ public class Token implements Subject{
 				posicaoVermelho.add(Integer.toString(t.position));
 			}
 		}
-		posicao.add(posicaoVermelho);
-		for(Token t:Token.gameTokens){
-			if(t.getColor() == "Verde"){
-				posicaoVerde.add(Integer.toString(t.position));
-			}
-		}
 		posicao.add(posicaoVerde);
 		for(Token t:Token.gameTokens){
 			if(t.getColor() == "Azul"){
 				posicaoAzul.add(Integer.toString(t.position));
+			}
+		}
+		posicao.add(posicaoVermelho);
+		for(Token t:Token.gameTokens){
+			if(t.getColor() == "Verde"){
+				posicaoVerde.add(Integer.toString(t.position));
 			}
 		}
 		posicao.add(posicaoAzul);

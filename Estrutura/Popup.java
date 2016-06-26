@@ -1,3 +1,5 @@
+package Estrutura;
+
 import javax.swing.JOptionPane;
 
 public class Popup
