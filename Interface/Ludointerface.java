@@ -312,7 +312,7 @@ public class Ludointerface extends JFrame {
 				      //create an print writer for writing to a file
 				      PrintStream out = new PrintStream(new FileOutputStream("output.txt"));
 				      //output to the file a line
-				     String jogadordavez = "fudeu";
+				     String jogadordavez = "";
 				     for(Jogador j:Jogador.players){
 				    	  	if(j.getTurn() == true && j.getColor() == "Verde"){
 				    	  		jogadordavez = "Verde";

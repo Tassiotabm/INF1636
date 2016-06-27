@@ -292,13 +292,13 @@ public class regrasdojogo {
 			Token toRemove = regrasdojogo.eaeComeu(toMove, number);
 			
 			if (toRemove != null) {
-				anda20 = true;
 				if (!regrasdojogo.isShelterfree(toMove.getPath().path.get(toMove.getPosition() + number))) {
 					return false;
 				} else {
 					if (!regrasdojogo.isHomeFree(toMove.getPath().path.get(toMove.getPosition() + number))) {
 						return false;
 					} else {
+						anda20 = true;
 						toMove.move(number);
 						toRemove.remove();
 						return true;
